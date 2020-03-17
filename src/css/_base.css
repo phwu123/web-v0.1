@@ -1,0 +1,12 @@
+:root {
+  --font-size: 10px;
+
+  --color-main-bg: var(--light-color-main-bg);
+  --color-font: var(--light-color-font);
+
+  --light-color-main-bg: white;
+  --light-color-font: black;
+
+  --dark-color-main-bg: black;
+  --dark-color-font: white;
+}
