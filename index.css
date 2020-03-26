@@ -27,3 +27,11 @@ body {
   font-size: var(--font-size);
   color: var(--color-font);
 }
+
+.main-container {
+  display: grid;
+}
+
+.main-container[layout-style=basic] {
+  grid-template-columns: 100px 1fr;
+}
