@@ -28,10 +28,33 @@ body {
   color: var(--color-font);
 }
 
-.main-container {
+.main-component {
   display: grid;
+  font-size: 1.4rem;
+  height: 100vh;
 }
 
-.main-container[layout-style=basic] {
-  grid-template-columns: 100px 1fr;
+.main-component[layout-style=basic] {
+  grid-template-columns: 200px 1fr;
+}
+
+.main-component[layout-style=basic] > .navigation-component {
+  display: flex;
+  flex-direction: column;
+  padding: 0 1em;
+  margin-top: 80%;
+}
+
+.main-component[layout-style=basic] > .navigation-component > .navigation-item {
+  cursor: pointer;
+  padding: 0.5em;
+}
+
+.main-component[layout-style=basic] > .navigation-component > .navigation-item:hover {
+  background-color: var(--color-highlight-hover);
+}
+
+.main-component > .content-holder {
+  overflow-y: auto;
+  margin: 10% 5%;
 }
