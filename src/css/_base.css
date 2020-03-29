@@ -3,13 +3,16 @@
 
   --color-main-bg: var(--light-color-main-bg);
   --color-font: var(--light-color-font);
+  --color-font-sub: var(--light-color-font-sub);
   --color-highlight-hover: var(--light-color-highlight-hover);
 
   --light-color-main-bg: white;
   --light-color-font: black;
+  --light-color-font-sub: grey;
   --light-color-highlight-hover: aqua;
 
   --dark-color-main-bg: black;
   --dark-color-font: white;
+  --dark-color-font-sub: grey;
   --dark-color-highlight-hover: red;
 }

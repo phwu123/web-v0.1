@@ -58,3 +58,45 @@ body {
   overflow-y: auto;
   margin: 10% 5%;
 }
+
+.main-component[layout-style=basic] .skills-component {
+  display: grid;
+  align-content: flex-start;
+  grid-gap: 1em;
+  height: 100%;
+}
+
+.skills-header {
+  font-size: 1.8em;
+}
+
+.skill-label {
+  font-size: 1.4em;
+}
+
+.main-component[layout-style=basic] .skill-section {
+  display: grid;
+  grid-gap: 1em;
+  align-content: flex-start;
+  grid-template-columns: repeat(auto-fill, 300px);
+}
+
+.main-component[layout-style=basic] .skill-type {
+  display: grid;
+  grid-row-gap: 1em;
+  align-content: flex-start;
+}
+
+.main-component[layout-style=basic] .skill-list {
+  display: grid;
+  grid-row-gap: 1em;
+}
+
+.main-component[layout-style=basic] .skill-set {
+  display: grid;
+}
+
+.main-component[layout-style=basic] .skill-set > p:nth-child(2) {
+  font-size: 0.8em;
+  color: var(--color-font-sub);
+}

@@ -1,6 +1,8 @@
 const MainComponentTemplate = `
   <navigation-component class="navigation-component"></navigation-component>
-  <main class="content-holder">others</main>
+  <main class="content-holder">
+    <skills-component class="skills-component"></skills-component>
+  </main>
 `
 customElements.define('main-component',
   class MainComponent extends HTMLElement {
