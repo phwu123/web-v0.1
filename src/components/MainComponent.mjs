@@ -1,7 +1,9 @@
 const MainComponentTemplate = `
   <navigation-component class="navigation-component"></navigation-component>
-  <main class="content-holder">
-    <skills-component class="skills-component"></skills-component>
+  <main id="content-holder" class="content-holder">
+    <skills-component id="component-skills" class="content-component"></skills-component>
+    <span id="component-experience" class="content-component">asfdfd</span>
+    <span id="component-contact" class="content-component">adsf</span>
   </main>
 `
 customElements.define('main-component',

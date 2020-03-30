@@ -59,7 +59,7 @@ body {
   margin: 10% 5%;
 }
 
-.main-component[layout-style=basic] .skills-component {
+.main-component[layout-style=basic] .content-component {
   display: grid;
   align-content: flex-start;
   grid-gap: 1em;
