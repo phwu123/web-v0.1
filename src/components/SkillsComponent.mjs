@@ -4,41 +4,70 @@ const SkillsComponentTemplateBasic = `
     <article class="skill-type">
       <p class="skill-label">Javascript</p>
       <div class="skill-list">
-        <p>Web Components</p>
-        <span class="skill-set">
+        <skill-set-module>
+          <p>Web Components</p>
+        </skill-set-module>
+        <skill-set-module>
           <p>Vue.js</p>
           <p>Vuex / Vue Router / Vuetify / Quasar</p>
-        </span>
-        <span>ReactJS</span>
-        <span class="skill-set">
+        </skill-set-module>
+        <skill-set-module>
+          <p>ReactJS</p>
+        </skill-set-module>
+        <skill-set-module>
           <p>Node.js</p>
           <p>Express</p>
-        </span>
-        <span class="skill-set">
+        </skill-set-module>
+        <skill-set-module>
           <p>Other</p>
           <p>Redux / Bootstrap / jQuery / Socket.io</p>
-        </span>
+        </skill-set-module>
       </div>
+    </article>
+    <article class="skill-type">
+      <p class="skill-label">Essentials</p>
+      <skill-set-module>
+        <p>HTML5</p>
+      </skill-set-module>
+      <skill-set-module>
+        <p>CSS3</p>
+      </skill-set-module>
     </article>
     <article class="skill-type">
       <p class="skill-label">Databases</p>
       <div class="skill-list">
-        <span class="skill-set">
+        <skill-set-module>
           <p>MongoDB</p>
           <p>Mongoose</p>
-        </span>
-        <span class="skill-set">
+        </skill-set-module>
+        <skill-set-module>
           <p>MySQL</p>
           <p>Sequelizer</p>
-        </span>
+        </skill-set-module>
+      </div>
+    </article>
+    <article class="skill-type">
+      <p class="skill-label">Testing</p>
+      <div class="skill-list">
+        <skill-set-module>
+          <p>Mocha</p>
+        </skill-set-module>
+        <skill-set-module>
+          <p>Chai</p>
+        </skill-set-module>
+        <skill-set-module>
+          <p>Puppeteer</p>
+        </skill-set-module>
       </div>
     </article>
     <article class="skill-type">
       <p class="skill-label">fill</p>
-      <p>asdfk;jawekf;ljweafkaejfkl </p>
-    </article>
-    <article class="skill-type">
-      <p class="skill-label">fill</p>
+      <div class="skill-list">
+        <skill-set-module>
+          <p>ex1</p>
+          <p>sub1</p>
+        </skill-set-module>
+      </div>
     </article>
   </section>
 `

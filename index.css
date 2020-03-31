@@ -1,27 +1,5 @@
 @import '/src/css/_base.css';
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-
-
 body {
   background-color: var(--color-main-bg);
   font-size: var(--font-size);
@@ -32,6 +10,12 @@ body {
   display: grid;
   font-size: 1.4rem;
   height: 100vh;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.opacity-1 {
+  opacity: 1;
 }
 
 .main-component[layout-style=basic] {
@@ -54,9 +38,9 @@ body {
   background-color: var(--color-highlight-hover);
 }
 
-.main-component > .content-holder {
+.main-component[layout-style=basic] > .content-holder {
   overflow-y: auto;
-  margin: 10% 5%;
+  padding: 5% 0;
 }
 
 .main-component[layout-style=basic] .content-component {
@@ -64,6 +48,7 @@ body {
   align-content: flex-start;
   grid-gap: 1em;
   height: 100%;
+  padding: 5%;
 }
 
 .skills-header {
@@ -72,6 +57,7 @@ body {
 
 .skill-label {
   font-size: 1.4em;
+  text-decoration: underline;
 }
 
 .main-component[layout-style=basic] .skill-section {
@@ -90,13 +76,4 @@ body {
 .main-component[layout-style=basic] .skill-list {
   display: grid;
   grid-row-gap: 1em;
-}
-
-.main-component[layout-style=basic] .skill-set {
-  display: grid;
-}
-
-.main-component[layout-style=basic] .skill-set > p:nth-child(2) {
-  font-size: 0.8em;
-  color: var(--color-font-sub);
 }

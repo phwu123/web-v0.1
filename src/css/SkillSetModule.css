@@ -1,0 +1,11 @@
+@import '/src/css/_base.css';
+
+:host([layout-style="basic"]) > p:nth-child(3) {
+  font-size: 0.8em;
+  color: var(--color-font-sub);
+}
+
+:host([layout-style="basic"]) > p:nth-child(3):after {
+  content: ' ';
+  white-space: pre;
+}
