@@ -1,9 +1,9 @@
-const SkillsComponentTemplateBasic = `
+const SkillsComponentBasicTemplate = `
   <header class="skills-header">Skills</header>
   <section class="skill-section">
-    <article class="skill-type">
-      <p class="skill-label">Javascript</p>
-      <div class="skill-list">
+    <skill-type-module>
+      <p>Javascript</p>
+      <div>
         <skill-set-module>
           <p>Web Components</p>
         </skill-set-module>
@@ -23,32 +23,35 @@ const SkillsComponentTemplateBasic = `
           <p>Redux / Bootstrap / jQuery / Socket.io</p>
         </skill-set-module>
       </div>
-    </article>
-    <article class="skill-type">
-      <p class="skill-label">Essentials</p>
-      <skill-set-module>
-        <p>HTML5</p>
-      </skill-set-module>
-      <skill-set-module>
-        <p>CSS3</p>
-      </skill-set-module>
-    </article>
-    <article class="skill-type">
-      <p class="skill-label">Databases</p>
-      <div class="skill-list">
+    </skill-type-module>
+    <skill-type-module>
+      <p>Essentials</p>
+      <div>
         <skill-set-module>
-          <p>MongoDB</p>
-          <p>Mongoose</p>
+          <p>HTML5</p>
         </skill-set-module>
         <skill-set-module>
-          <p>MySQL</p>
-          <p>Sequelizer</p>
+          <p>CSS3</p>
+          <p>Sass</p>
         </skill-set-module>
       </div>
-    </article>
-    <article class="skill-type">
-      <p class="skill-label">Testing</p>
-      <div class="skill-list">
+    </skill-type-module>
+    <skill-type-module>
+      <p>Databases</p>
+      <div>
+        <skill-set-module>
+          <p>NoSQL</p>
+          <p>MongoDB / CouchDB</p>
+        </skill-set-module>
+        <skill-set-module>
+          <p>SQL</p>
+          <p>MySQL / PostgreSQL</p>
+        </skill-set-module>
+      </div>
+    </skill-type-module>
+    <skill-type-module>
+      <p>Testing</p>
+      <div>
         <skill-set-module>
           <p>Mocha</p>
         </skill-set-module>
@@ -59,16 +62,42 @@ const SkillsComponentTemplateBasic = `
           <p>Puppeteer</p>
         </skill-set-module>
       </div>
-    </article>
-    <article class="skill-type">
-      <p class="skill-label">fill</p>
-      <div class="skill-list">
+    </skill-type-module>
+    <skill-type-module>
+      <p>Development</p>
+      <div>
         <skill-set-module>
-          <p>ex1</p>
-          <p>sub1</p>
+          <p>Git</p>
+        </skill-set-module>
+        <skill-set-module>
+          <p>npm</p>
+        </skill-set-module>
+        <skill-set-module>
+          <p>Webpack</p>
+        </skill-set-module>
+        <skill-set-module>
+          <p>Babel</p>
         </skill-set-module>
       </div>
-    </article>
+    </skill-type-module>
+    <skill-type-module>
+      <p>Deployment</p>
+      <div>
+        <skill-set-module>
+          <p>Amazon Web Services</p>
+          <p>S3 / EC2</p>
+        </skill-set-module>
+        <skill-set-module>
+          <p>DigitalOcean</p>
+        </skill-set-module>
+        <skill-set-module>
+          <p>Docker</p>
+        </skill-set-module>
+        <skill-set-module>
+          <p>Nginx</p>
+        </skill-set-module>
+      </div>
+    </skill-type-module>
   </section>
 `
 
@@ -76,7 +105,22 @@ customElements.define('skills-component',
   class SkillsComponent extends HTMLElement {
     constructor() {
       super();
-      this.innerHTML = SkillsComponentTemplateBasic;
+      if (!this.layoutStyle) {
+        this.layoutStyle = 'basic'
+      }
+      this.innerHTML = SkillsComponentBasicTemplate;
+    }
+
+    static get observedAttributes() {
+      return ['layout-style'];
+    }
+
+    get layoutStyle() {
+      return this.getAttribute('layout-style')
+    }
+
+    set layoutStyle(val) {
+      this.setAttribute('layout-style', val)
     }
   }
 )

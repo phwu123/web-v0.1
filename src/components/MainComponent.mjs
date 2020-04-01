@@ -2,7 +2,7 @@ const MainComponentTemplate = `
   <navigation-component class="navigation-component"></navigation-component>
   <main id="content-holder" class="content-holder">
     <skills-component id="component-skills" class="content-component"></skills-component>
-    <span id="component-experience" class="content-component">experience</span>
+    <experience-component id="component-experience" class="content-component"></experience-component>
     <span id="component-contact" class="content-component">contact</span></span>
   </main>
 `

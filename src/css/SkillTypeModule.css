@@ -1,0 +1,17 @@
+@import '/src/css/_base.css';
+
+:host([layout-style="basic"]) {
+  display: grid;
+  grid-row-gap: 1em;
+  align-content: flex-start;
+}
+
+:host > p {
+  font-size: 1.4em;
+  text-decoration: underline;
+}
+
+:host > div {
+  display: grid;
+  grid-row-gap: 0.5em;
+}

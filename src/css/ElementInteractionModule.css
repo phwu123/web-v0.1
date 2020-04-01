@@ -1,0 +1,5 @@
+@import '/src/css/_base.css';
+
+:host([hover]:hover) {
+  background-color: var(--color-highlight-hover);
+}
