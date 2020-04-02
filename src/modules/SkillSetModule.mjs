@@ -7,13 +7,13 @@ customElements.define('skill-set-module',
       if (!this.layoutStyle) {
         this.layoutStyle = 'basic'
       }
-      const textMainNode = this.children[0]
-      const textSubNode = this.children[1] || document.createElement('p')
+      if (!this.children[1]) { // add second element if there is none for spacing
+        this.appendChild(document.createElement('p'));
+      }
       this.attachShadow({mode: 'open'});
       const shadowRoot = this.shadowRoot
-      shadowRoot.appendChild(createCssLink('SkillSetModule.css'))
-      shadowRoot.appendChild(textMainNode);
-      shadowRoot.appendChild(textSubNode);
+      shadowRoot.appendChild(createCssLink('SkillSetModule.css'));
+      shadowRoot.appendChild(document.createElement('slot'));
     }
 
     static get observedAttributes() {
@@ -21,11 +21,11 @@ customElements.define('skill-set-module',
     }
 
     get layoutStyle() {
-      return this.getAttribute('layout-style')
+      return this.getAttribute('layout-style');
     }
 
     set layoutStyle(val) {
-      this.setAttribute('layout-style', val)
+      this.setAttribute('layout-style', val);
     }
   }
 )

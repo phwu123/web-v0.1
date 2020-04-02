@@ -1,11 +1,11 @@
 @import '/src/css/_base.css';
 
-:host([layout-style="basic"]) > p:nth-child(3) {
+:host([layout-style="basic"]) > ::slotted(:nth-child(2)) {
   font-size: 0.7em;
   color: var(--color-font-sub);
 }
 
-:host([layout-style="basic"]) > p:nth-child(3):after {
+:host([layout-style="basic"]) > ::slotted(:nth-child(2)):after {
   content: ' ';
   white-space: pre;
 }

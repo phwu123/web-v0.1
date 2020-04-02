@@ -10,9 +10,7 @@ customElements.define('skill-type-module',
       this.attachShadow({mode: 'open'});
       const shadowRoot = this.shadowRoot;
       shadowRoot.appendChild(createCssLink('SkillTypeModule.css'));
-      [...this.children].forEach(child => {
-        shadowRoot.appendChild(child);
-      })
+      shadowRoot.appendChild(document.createElement('slot'))
     }
 
     static get observedAttributes() {

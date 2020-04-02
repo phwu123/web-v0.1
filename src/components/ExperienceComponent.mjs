@@ -1,5 +1,8 @@
 const ExperienceComponentBasicTemplate = `
-  <header class="skills-header">Experience</header>
+  <header class="component-header">Experience</header>
+  <section class="component-section">
+  
+  </section>
 `
 customElements.define('experience-component',
   class ExperienceComponent extends HTMLElement {

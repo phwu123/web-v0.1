@@ -6,12 +6,15 @@
   align-content: flex-start;
 }
 
-:host > p {
+::slotted(p) {
   font-size: 1.4em;
+}
+
+:host([layout-style="basic"]) > ::slotted(p) {
   text-decoration: underline;
 }
 
-:host > div {
+::slotted(div) {
   display: grid;
   grid-row-gap: 0.5em;
 }

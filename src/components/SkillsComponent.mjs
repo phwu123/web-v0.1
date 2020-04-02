@@ -1,6 +1,6 @@
 const SkillsComponentBasicTemplate = `
-  <header class="skills-header">Skills</header>
-  <section class="skill-section">
+  <header class="component-header">Skills</header>
+  <section class="component-section skill-section">
     <skill-type-module>
       <p>Javascript</p>
       <div>

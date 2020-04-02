@@ -41,10 +41,6 @@ body {
   padding: 0.5em;
 }
 
-/* .main-component[layout-style=basic] > .navigation-component > .navigation-item:hover {
-  background-color: var(--color-highlight-hover);
-} */
-
 .main-component[layout-style=basic] > .content-holder {
   overflow-y: auto;
   padding: 5% 0;
@@ -58,13 +54,16 @@ body {
   padding: 5%;
 }
 
-.skills-header {
+.component-header {
   font-size: 1.8em;
 }
 
-.main-component[layout-style=basic] .skill-section {
+.main-component[layout-style=basic] .component-section {
   display: grid;
   grid-gap: 1em;
   align-content: flex-start;
+}
+
+.main-component[layout-style=basic] .skill-section {
   grid-template-columns: repeat(auto-fill, 300px);
 }
