@@ -7,9 +7,7 @@ customElements.define('element-interaction-module',
       this.attachShadow({mode: 'open'});
       const shadowRoot = this.shadowRoot;
       shadowRoot.appendChild(createCssLink('ElementInteractionModule.css'));
-      [...this.children].forEach(child => {
-        shadowRoot.appendChild(child);
-      })
+      shadowRoot.appendChild(document.createElement('slot'))
     }
 
     static get observedAttributes() {
