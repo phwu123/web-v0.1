@@ -1,16 +1,10 @@
-import { createCssLink } from '../functions.js'
+import { setUpModule } from '../functions.js'
 
 customElements.define('skill-type-module',
   class SkillTypeModule extends HTMLElement {
     constructor() {
       super();
-      if (!this.layoutStyle) {
-        this.layoutStyle = 'basic'
-      }
-      this.attachShadow({mode: 'open'});
-      const shadowRoot = this.shadowRoot;
-      shadowRoot.appendChild(createCssLink('SkillTypeModule.css'));
-      shadowRoot.appendChild(document.createElement('slot'))
+      setUpModule(this, 'SkillTypeModule.css')
     }
 
     static get observedAttributes() {

@@ -1,1 +1,18 @@
 @import '/src/css/_base.css';
+
+:host([layout-style="basic"]) {
+  display: grid;
+  grid-row-gap: 0.5em;
+}
+
+:host header {
+  font-size: 1.4em;
+}
+
+:host([layout-style="basic"]) > header {
+  text-decoration: underline;
+}
+
+:host([layout-style="basic"]) > div > :nth-child(2) {
+  font-size: 0.8em;
+}

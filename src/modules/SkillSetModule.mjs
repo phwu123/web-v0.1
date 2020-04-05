@@ -7,13 +7,12 @@ customElements.define('skill-set-module',
       if (!this.layoutStyle) {
         this.layoutStyle = 'basic'
       }
-      if (!this.children[1]) { // add second element if there is none for spacing
-        this.appendChild(document.createElement('p'));
-      }
+      const subText = this.children[1] || document.createElement('p')
       this.attachShadow({mode: 'open'});
       const shadowRoot = this.shadowRoot
       shadowRoot.appendChild(createCssLink('SkillSetModule.css'));
-      shadowRoot.appendChild(document.createElement('slot'));
+      shadowRoot.appendChild(this.children[0])
+      shadowRoot.appendChild(subText)
     }
 
     static get observedAttributes() {

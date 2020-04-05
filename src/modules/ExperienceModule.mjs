@@ -1,15 +1,22 @@
-import { createCssLink } from '../functions.js'
+import { setUpModule } from '../functions.js'
 
 customElements.define('experience-module',
   class ExperienceModule extends HTMLElement {
     constructor() {
       super();
-      if (!this.layoutStyle) {
-        this.layoutStyle = 'basic'
-      }
-      this.attachShadow({mode:'open'})
-      shadowRoot.appendChild(createCssLink('ExperienceModule.css'));
-      shadowRoot.appendChild(document.createElement('slot'))
+      setUpModule(this, 'ExperienceModule.css')
+    }
+
+    static get observedAttributes() {
+      return ['layout-style'];
+    }
+
+    get layoutStyle() {
+      return this.getAttribute('layout-style')
+    }
+
+    set layoutStyle(val) {
+      this.setAttribute('layout-style', val)
     }
   }
 )
