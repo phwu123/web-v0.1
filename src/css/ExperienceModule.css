@@ -16,3 +16,7 @@
 :host([layout-style="basic"]) > div > :nth-child(2) {
   font-size: 0.8em;
 }
+
+:host([layout-style="basic"]) li {
+  padding: 0.2em 0;
+}

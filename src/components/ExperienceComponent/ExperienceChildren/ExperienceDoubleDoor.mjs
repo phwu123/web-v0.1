@@ -13,7 +13,12 @@ const ExperienceDoubleDoorBasicTemplate = `
     <div>
       <span>Responsibilities:</span>
       <ul>
-        <li></li>
+        <li>Responsive reusable UI modules and components, and codebase refactor to implement them</li>
+        <li>RESTful API and unit tests for offer and professional services</li>
+        <li>Built admin tools and interface for coupon management</li>
+        <li>Worked with other software engineers to create and enforce coding standards</li>
+        <li>Windows environment compatibility for scripts and modules including AWS</li>
+        <li>IE / Edge browser compatibility</li>
       </ul>
     </div>
   </experience-module>

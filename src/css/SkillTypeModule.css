@@ -16,5 +16,5 @@
 
 :host > div {
   display: grid;
-  grid-row-gap: 0.5em;
+  grid-row-gap: 0.3em;
 }

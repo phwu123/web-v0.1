@@ -3,18 +3,24 @@ const MainComponentTemplate = `
   <main id="content-holder" class="content-holder">
     <skills-component id="component-skills" class="content-component"></skills-component>
     <experience-component id="component-experience" class="content-component"></experience-component>
-    <span id="component-contact" class="content-component">contact</span></span>
+    <contact-component id="component-contact" class="content-component">contact</contact-component>
   </main>
 `
 customElements.define('main-component',
   class MainComponent extends HTMLElement {
     constructor() {
       super();
+      if (!this.layoutStyle) {
+        this.layoutStyle = 'basic'
+      }
+      if (!this.themeColor) {
+        this.themeColor = 'light'
+      }
       this.innerHTML = MainComponentTemplate;
     }
 
     static get observedAttributes() {
-      return ['layout-style']
+      return ['layout-style', 'theme-color']
     }
 
     get layoutStyle() {
@@ -23,6 +29,14 @@ customElements.define('main-component',
 
     set layoutStyle(val) {
       this.setAttribute('layout-style', val)
+    }
+
+    get themeColor() {
+      return this.getAttribute('theme-color');
+    }
+
+    set themeColor(val) {
+      this.setAttribute('theme-color', val)
     }
 
     connectedCallback() {

@@ -17,3 +17,12 @@ export function setUpModule(node, cssName) {
     shadowRoot.appendChild(child)  
   )
 }
+
+export function initAttributes(node) {
+  if (!node.layoutStyle) {
+    node.layoutStyle = 'basic';
+  };
+  if (!node.themeColor) {
+    node.themeColor = 'light';
+  };
+}

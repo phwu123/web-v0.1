@@ -11,7 +11,7 @@ customElements.define('element-interaction-module',
     }
 
     static get observedAttributes() {
-      return ['layout-style', 'hover'];
+      return ['layout-style'];
     }
 
     get layoutStyle() {
@@ -20,14 +20,6 @@ customElements.define('element-interaction-module',
 
     set layoutStyle(val) {
       this.setAttribute('layout-style', val)
-    }
-
-    get interactionHover() {
-      return this.getAttribute('hover');
-    }
-
-    set interactionHover(val) {
-      this.setAttribute('hover', val)
     }
   }
 )
