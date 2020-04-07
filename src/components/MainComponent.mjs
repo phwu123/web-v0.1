@@ -3,7 +3,7 @@ const MainComponentTemplate = `
   <main id="content-holder" class="content-holder">
     <skills-component id="component-skills" class="content-component"></skills-component>
     <experience-component id="component-experience" class="content-component"></experience-component>
-    <contact-component id="component-contact" class="content-component">contact</contact-component>
+    <contact-component id="component-contact" class="content-component"></contact-component>
   </main>
 `
 customElements.define('main-component',
