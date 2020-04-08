@@ -1,6 +1,6 @@
 const ExperienceDoubleDoorBasicTemplate = `
   <experience-module>
-    <header>DoubleDoor</header>
+    <a href="https://doubledoor.io" target="_blank" rel="noreferrer noopener">DoubleDoor</a>
     <p>Global Real Estate platform for all services in the residential sector.  Responsive desktop and mobile app.</p>
     <div>
       <span>Tech Stack:</span>

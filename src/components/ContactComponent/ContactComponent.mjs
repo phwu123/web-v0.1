@@ -63,10 +63,10 @@ customElements.define('contact-component',
     get getGithubImage() {
       switch (this.themeColor) {
         case 'dark':
-          return 'src/images/GitHub-Mark-64px.png'
+          return 'src/images/GitHub-Mark-Light-64px.png'
         case 'light':
         default:
-          return 'src/images/GitHub-Mark-Light-64px.png'
+          return 'src/images/GitHub-Mark-64px.png'
       }
     }
 

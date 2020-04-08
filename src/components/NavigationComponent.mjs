@@ -2,6 +2,7 @@ const NavigationComponentTemplateBasic = `
   <element-interaction-module id="navigation-skills" class="navigation-item" hover click-effect>Skills</element-interaction-module>
   <element-interaction-module id="navigation-experience" class="navigation-item" hover click-effect>Experience</element-interaction-module>
   <element-interaction-module id="navigation-contact" class="navigation-item" hover click-effect>Contact</element-interaction-module>
+  <element-interaction-module class="navigation-item" click-effect>Options</element-interaction-module>
 `
 customElements.define('navigation-component',
   class NavigationComponent extends HTMLElement {
@@ -11,7 +12,7 @@ customElements.define('navigation-component',
     }
 
     connectedCallback() {
-      [...this.children].forEach(child => child.addEventListener('click', this.navigateToPage))
+      [...this.children].slice(0, 3).forEach(child => child.addEventListener('click', this.navigateToPage))
     }
 
     navigateToPage(e) {

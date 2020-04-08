@@ -1,0 +1,50 @@
+import { createCssLink, initAttributes } from '../functions.js'
+
+customElements.define('dropdown-box-module',
+  class DropdownBoxModule extends HTMLElement {
+    constructor() {
+      super();
+      initAttributes(this);
+      this.attachShadow({mode: 'open'});
+      const shadowRoot = this.shadowRoot;
+      shadowRoot.appendChild(createCssLink('DropdownBoxModule.css'));
+      shadowRoot.appendChild(document.createElement('slot'))
+    }
+
+    static get observedAttributes() {
+      return ['layout-style', 'dropdown-open'];
+    }
+
+    attributeChangedCallback(name, oldVal, newVal) {
+      switch (name) {
+        case 'dropdown-open':
+          this.toggleDropdown(newVal);
+          break;
+      }
+    }
+
+    get layoutStyle() {
+      return this.getAttribute('layout-style')
+    }
+
+    set layoutStyle(val) {
+      this.setAttribute('layout-style', val)
+    }
+
+    get dropdownOpen() {
+      return this.getAttribute('dropdown-open');
+    }
+
+    set dropdownOpen(val) {
+      this.setAttribute('dropdown-open', val)
+    }
+
+    toggleDropdown(val) {
+      if (val) {
+        this.style.height = this.offsetHeight + 'px';
+      } else {
+        this.style.height = 0;
+      }
+    }
+  }
+)

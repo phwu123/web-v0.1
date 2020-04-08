@@ -1,9 +1,10 @@
-import { createCssLink } from '../functions.js'
+import { createCssLink, initAttributes } from '../functions.js'
 
 customElements.define('element-interaction-module',
   class ElementInteractionModule extends HTMLElement {
     constructor() {
       super();
+      initAttributes(this);
       this.attachShadow({mode: 'open'});
       const shadowRoot = this.shadowRoot;
       shadowRoot.appendChild(createCssLink('ElementInteractionModule.css'));

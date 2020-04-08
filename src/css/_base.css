@@ -6,10 +6,10 @@
   --color-font-sub: var(--light-color-font-sub);
   --color-highlight-hover: var(--light-color-highlight-hover);
 
-  --light-color-main-bg: white;
+  --light-color-main-bg: #888;
   --light-color-font: black;
-  --light-color-font-sub: grey;
-  --light-color-highlight-hover: aqua;
+  --light-color-font-sub: #555;
+  --light-color-highlight-hover: #0bf;
 
   --dark-color-main-bg: black;
   --dark-color-font: white;

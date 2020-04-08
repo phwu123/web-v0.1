@@ -1,0 +1,7 @@
+@import '/src/css/_base.css';
+
+:host {
+  overflow: hidden;
+  transition: height 0.5s;
+  height: 0;
+}

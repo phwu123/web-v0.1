@@ -39,6 +39,7 @@ body {
 .main-component[layout-style=basic] > .navigation-component > .navigation-item {
   cursor: pointer;
   padding: 0.5em;
+  border-radius: 0.5em;
 }
 
 .main-component[layout-style=basic] > .content-holder {
@@ -51,6 +52,12 @@ body {
   align-content: flex-start;
   grid-gap: 1em;
   min-height: 100%;
+  padding: 5%;
+}
+
+.main-component[layout-style=basic] .contact-component {
+  display: grid;
+  grid-gap: 1em;
   padding: 5%;
 }
 

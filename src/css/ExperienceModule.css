@@ -5,11 +5,11 @@
   grid-row-gap: 0.5em;
 }
 
-:host header {
+:host a {
   font-size: 1.4em;
 }
 
-:host([layout-style="basic"]) > header {
+:host([layout-style="basic"]) > a {
   text-decoration: underline;
 }
 
