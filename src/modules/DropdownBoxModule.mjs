@@ -1,14 +1,11 @@
-import { createCssLink, initAttributes } from '../functions.js'
+import { setUpModule } from '../functions.js'
 
 customElements.define('dropdown-box-module',
   class DropdownBoxModule extends HTMLElement {
     constructor() {
       super();
-      initAttributes(this);
-      this.attachShadow({mode: 'open'});
-      const shadowRoot = this.shadowRoot;
-      shadowRoot.appendChild(createCssLink('DropdownBoxModule.css'));
-      shadowRoot.appendChild(document.createElement('slot'))
+      setUpModule(this, 'DropdownBoxModule.css');
+      this.shadowRoot.appendChild(document.createElement('slot'))
     }
 
     static get observedAttributes() {

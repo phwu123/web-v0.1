@@ -1,3 +1,5 @@
+import { initAttributes } from '../../functions.js';
+
 const ExperienceComponentBasicTemplate = `
   <header class="component-header">Experience</header>
   <section class="component-section">
@@ -8,9 +10,7 @@ customElements.define('experience-component',
   class ExperienceComponent extends HTMLElement {
     constructor() {
       super();
-      if (!this.layoutStyle) {
-        this.layoutStyle = 'basic'
-      }
+      initAttributes(this);
       this.innerHTML = ExperienceComponentBasicTemplate
     }
 

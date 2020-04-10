@@ -1,3 +1,5 @@
+import { initAttributes } from '../../functions.js';
+
 const ContactComponentBasicTemplate = `
   <header class="component-header">Contact</header>
   <section class="component-section contact-links">
@@ -17,12 +19,7 @@ customElements.define('contact-component',
   class ContactComponent extends HTMLElement {
     constructor() {
       super();
-      if (!this.layoutStyle) {
-        this.layoutStyle = 'basic'
-      }
-      if (!this.themeColor) {
-        this.themeColor = 'light'
-      }
+      initAttributes(this);
       this.innerHTML = ContactComponentBasicTemplate
     }
 

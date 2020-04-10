@@ -6,18 +6,6 @@ export function createCssLink(cssName) {
   return link
 }
 
-export function setUpModule(node, cssName) {
-  if (!node.layoutStyle) {
-    node.layoutStyle = 'basic';
-  };
-  node.attachShadow({mode: 'open'});
-  const shadowRoot = node.shadowRoot;
-  shadowRoot.appendChild(createCssLink(cssName));
-  [...node.children].forEach(child =>
-    shadowRoot.appendChild(child)  
-  )
-}
-
 export function initAttributes(node) {
   if (!node.layoutStyle) {
     node.layoutStyle = 'basic';
@@ -25,4 +13,10 @@ export function initAttributes(node) {
   if (!node.themeColor) {
     node.themeColor = 'light';
   };
+}
+
+export function setUpModule(node, cssName) {
+  initAttributes(node);
+  node.attachShadow({mode: 'open'});
+  node.shadowRoot.appendChild(createCssLink(cssName));
 }

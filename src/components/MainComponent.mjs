@@ -1,3 +1,5 @@
+import { initAttributes } from '../functions.js';
+
 const MainComponentTemplate = `
   <navigation-component class="navigation-component"></navigation-component>
   <main id="content-holder" class="content-holder">
@@ -10,12 +12,7 @@ customElements.define('main-component',
   class MainComponent extends HTMLElement {
     constructor() {
       super();
-      if (!this.layoutStyle) {
-        this.layoutStyle = 'basic'
-      }
-      if (!this.themeColor) {
-        this.themeColor = 'light'
-      }
+      initAttributes(this);
       this.innerHTML = MainComponentTemplate;
     }
 

@@ -4,7 +4,10 @@ customElements.define('experience-module',
   class ExperienceModule extends HTMLElement {
     constructor() {
       super();
-      setUpModule(this, 'ExperienceModule.css')
+      setUpModule(this, 'ExperienceModule.css');
+      [...this.children].forEach(child =>
+        this.shadowRoot.appendChild(child)
+      )
     }
 
     static get observedAttributes() {

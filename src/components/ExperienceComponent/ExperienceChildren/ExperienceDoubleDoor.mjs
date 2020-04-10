@@ -1,3 +1,5 @@
+import { initAttributes } from '../../../functions.js';
+
 const ExperienceDoubleDoorBasicTemplate = `
   <experience-module>
     <a href="https://doubledoor.io" target="_blank" rel="noreferrer noopener">DoubleDoor</a>
@@ -28,9 +30,7 @@ customElements.define('experience-doubledoor',
   class ExperienceDoubleDoor extends HTMLElement {
     constructor() {
       super();
-      if (!this.layoutStyle) {
-        this.layoutStyle = 'basic'
-      }
+      initAttributes(this);
       this.innerHTML = ExperienceDoubleDoorBasicTemplate
     }
 

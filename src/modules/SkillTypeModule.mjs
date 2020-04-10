@@ -4,7 +4,10 @@ customElements.define('skill-type-module',
   class SkillTypeModule extends HTMLElement {
     constructor() {
       super();
-      setUpModule(this, 'SkillTypeModule.css')
+      setUpModule(this, 'SkillTypeModule.css');
+      [...this.children].forEach(child =>
+        this.shadowRoot.appendChild(child)
+      )
     }
 
     static get observedAttributes() {
