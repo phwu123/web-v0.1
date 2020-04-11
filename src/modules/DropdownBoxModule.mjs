@@ -5,7 +5,9 @@ customElements.define('dropdown-box-module',
     constructor() {
       super();
       setUpModule(this, 'DropdownBoxModule.css');
-      this.shadowRoot.appendChild(document.createElement('slot'))
+      [...this.children].forEach(child =>
+        this.shadowRoot.appendChild(child)
+      )
     }
 
     static get observedAttributes() {
@@ -28,19 +30,11 @@ customElements.define('dropdown-box-module',
       this.setAttribute('layout-style', val)
     }
 
-    get dropdownOpen() {
-      return this.getAttribute('dropdown-open');
-    }
-
-    set dropdownOpen(val) {
-      this.setAttribute('dropdown-open', val)
-    }
-
     toggleDropdown(val) {
-      if (val) {
-        this.style.height = this.offsetHeight + 'px';
-      } else {
+      if (val === null) {
         this.style.height = 0;
+      } else {
+        this.style.height = this.shadowRoot.children[1].offsetHeight + 'px';
       }
     }
   }

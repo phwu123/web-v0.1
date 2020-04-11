@@ -1,5 +1,8 @@
 const OptionsComponentTemplateBasic = `
-  <element-interaction-module class="navigation-item" hover click-effect>Options</element-interaction-module>
+  <element-interaction-module id="options-toggle" class="navigation-item" hover click-effect>Options</element-interaction-module>
+  <dropdown-box-module id="dropdown-box" >
+    <p>aa</p>
+  </dropdown-box-module>
 `
 
 customElements.define('options-component',
@@ -10,7 +13,12 @@ customElements.define('options-component',
     }
     
     connectedCallback() {
-      
+      document.getElementById('options-toggle').addEventListener('click', this.toggleOptionsDropdown);
+    }
+
+    toggleOptionsDropdown() {
+      const dropdownBox = document.getElementById('dropdown-box');
+      dropdownBox.toggleAttribute('dropdown-open');
     }
   }
 )
