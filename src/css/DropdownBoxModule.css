@@ -4,4 +4,20 @@
   overflow: hidden;
   transition: height 0.5s;
   height: 0;
+  font-size: 0.8em;
+  display: grid;
+}
+
+:host > element-interaction-module {
+  padding: 0.5em;
+  margin-left: 0.75em;
+}
+
+:host .options-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+:host .options-row > p:nth-child(2)::after {
+  content: '>';
 }

@@ -37,18 +37,12 @@ body {
 }
 
 .main-component[layout-style=basic] > .navigation-component .navigation-item {
-  cursor: pointer;
   padding: 0.5em;
-  border-radius: 0.5em;
 }
 
 .main-component[layout-style=basic] options-component {
   display: flex;
   flex-direction: column;
-}
-
-.main-component[layout-style=basic] options-component > dropdown-box-module {
-  padding: 0 1em;
 }
 
 .main-component[layout-style=basic] > .content-holder {

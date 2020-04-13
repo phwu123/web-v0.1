@@ -3,9 +3,11 @@
 :host([hover]:hover) {
   transition: background-color 0.5s;
   background-color: var(--color-highlight-hover);
+  border-radius: 0.5em;
 }
 
 :host([click-effect]) {
+  cursor: pointer;
   transition: filter 0.2s;
 }
 

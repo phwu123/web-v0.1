@@ -34,7 +34,8 @@ customElements.define('dropdown-box-module',
       if (val === null) {
         this.style.height = 0;
       } else {
-        this.style.height = this.shadowRoot.children[1].offsetHeight + 'px';
+        this.style.height = this.shadowRoot.children.offsetHeight + 'px';
+        this.style.height = [...this.shadowRoot.children].reduce((sum, child) => sum += child.offsetHeight, 0) + 'px'
       }
     }
   }
