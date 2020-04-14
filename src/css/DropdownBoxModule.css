@@ -16,6 +16,7 @@
 :host .options-row {
   display: flex;
   justify-content: space-between;
+  position: relative;
 }
 
 :host .options-row > p:nth-child(2)::after {

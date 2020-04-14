@@ -7,6 +7,10 @@ const OptionsComponentTemplateBasic = `
       <span class="options-row">
         <p>Theme Type</p>
         <p></p>
+        <options-module>
+          <header>Themes</header>
+          <div>test</div>
+        </options-module>
       </span>
     </element-interaction-module>
     <element-interaction-module hover click-effect>
@@ -36,6 +40,15 @@ customElements.define('options-component',
       super();
       initAttributes(this);
       this.innerHTML = OptionsComponentTemplateBasic;
+      this.dropdownBox = document.getElementById('options-dropdown-box')
+      this.optionsToggle = document.getElementById('options-toggle')
+    }
+
+    connectedCallback() {
+      this.optionsToggle.addEventListener('click', this.toggleOptionsDropdown);
+      this.setDropdownText();
+    //  [...this.dropdownBox.children].forEach(child => child.children[0].children[2].addEventListener('click', this.toggleOptionDropdown));
+      this.dropdownBox.children[0].children[0].addEventListener('click', this.toggleOptionDropdown);
     }
     
     static get observedAttributes() {
@@ -74,23 +87,25 @@ customElements.define('options-component',
       }
     }
 
-    connectedCallback() {
-      document.getElementById('options-toggle').addEventListener('click', this.toggleOptionsDropdown);
-      this.setDropdownText();
+    toggleOptionDropdown() {
+      this.children[2].toggleAttribute('options-show');
     }
 
     toggleOptionsDropdown() {
-      const dropdownBox = document.getElementById('options-dropdown-box');
-      dropdownBox.toggleAttribute('dropdown-open');
+      document.getElementById('options-dropdown-box').toggleAttribute('dropdown-open');
     }
 
     setDropdownText() {
-      const textLine = document.getElementById('options-dropdown-box').children;
-      textLine[0].children[0].children[0].textContent = this.themeColorText
-      ;
-      textLine[1].children[0].children[0].textContent = this.layoutStyleText;
+      this.setThemeColorText();
+      this.setLayoutStyleText();
     }
 
+    setThemeColorText() {
+      this.dropdownBox.children[0].children[0].children[0].textContent = this.themeColorText;
+    }
     
+    setLayoutStyleText() {
+      this.dropdownBox.children[1].children[0].children[0].textContent = this.layoutStyleText;
+    }
   }
 )

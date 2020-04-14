@@ -19,6 +19,7 @@ body {
   height: 100vh;
   opacity: 0;
   transition: opacity 1s 0.2s;
+  background-color: var(--color-main-bg);
 }
 
 .opacity-1 {

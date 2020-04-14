@@ -17,7 +17,7 @@ customElements.define('dropdown-box-module',
     attributeChangedCallback(name, oldVal, newVal) {
       switch (name) {
         case 'dropdown-open':
-          this.toggleDropdown(newVal);
+          this.toggleDropdown();
           break;
       }
     }
@@ -30,12 +30,16 @@ customElements.define('dropdown-box-module',
       this.setAttribute('layout-style', val)
     }
 
-    toggleDropdown(val) {
-      if (val === null) {
-        this.style.height = 0;
-      } else {
+    get dropdownOpen() {
+      return this.getAttribute('dropdown-open') !== null;
+    }
+
+    toggleDropdown() {
+      if (this.dropdownOpen) {
         this.style.height = this.shadowRoot.children.offsetHeight + 'px';
         this.style.height = [...this.shadowRoot.children].reduce((sum, child) => sum += child.offsetHeight, 0) + 'px'
+      } else {
+        this.style.height = 0;
       }
     }
   }

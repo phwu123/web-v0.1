@@ -1,0 +1,11 @@
+@import '/src/css/_base.css';
+
+:host {
+  position: absolute;
+  transition: transform 0.5s;
+  background-color: blue;
+}
+
+:host([layout-style="basic"][options-show]) {
+  transform: translate3d(200px, 0, 0);
+}

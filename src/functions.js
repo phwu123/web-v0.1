@@ -7,11 +7,11 @@ export function createCssLink(cssName) {
 }
 
 export function initAttributes(node) {
-  if (!node.layoutStyle) {
-    node.layoutStyle = 'basic';
+  if (!node.getAttribute('layout-style')) {
+    node.setAttribute('layout-style', 'basic');
   };
-  if (!node.themeColor) {
-    node.themeColor = 'light';
+  if (!node.getAttribute('theme-color')) {
+    node.setAttribute('theme-color', 'light');
   };
 }
 
@@ -32,7 +32,7 @@ export function createElementTemplate(tag, module) {
         return; // do nothing
     }
   }
-  console.log(module.constructor)
+
   module.observedAttributes.forEach(attribute => {
     const attributeName = setUpAttribute(attribute);
     if (attributeName) {
