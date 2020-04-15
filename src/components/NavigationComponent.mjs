@@ -1,7 +1,7 @@
 const NavigationComponentTemplateBasic = `
-  <element-interaction-module id="navigation-skills" class="navigation-item" hover click-effect>Skills</element-interaction-module>
-  <element-interaction-module id="navigation-experience" class="navigation-item" hover click-effect>Experience</element-interaction-module>
-  <element-interaction-module id="navigation-contact" class="navigation-item" hover click-effect>Contact</element-interaction-module>
+  <p id="navigation-skills" class="navigation-item" effect-hover effect-click>Skills</p>
+  <p id="navigation-experience" class="navigation-item" effect-hover effect-click>Experience</p>
+  <p id="navigation-contact" class="navigation-item" effect-hover effect-click>Contact</p>
   <slot></slot>
 `
 customElements.define('navigation-component',

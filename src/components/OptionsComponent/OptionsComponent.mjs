@@ -1,38 +1,32 @@
 import { initAttributes } from '../../functions.js';
 
 const OptionsComponentTemplateBasic = `
-  <element-interaction-module id="options-toggle" class="navigation-item" hover click-effect>Options</element-interaction-module>
+  <header id="options-toggle" class="navigation-item" effect-hover effect-click>Options</header>
   <dropdown-box-module id="options-dropdown-box">
-    <element-interaction-module hover click-effect>
-      <span class="options-row">
-        <p>Theme Type</p>
-        <p></p>
-        <options-module>
-          <header>Themes</header>
-          <div>test</div>
-        </options-module>
-      </span>
-    </element-interaction-module>
-    <element-interaction-module hover click-effect>
-      <span class="options-row">
-      <p>Layout Type</p>
-      <p></p>
+    <span class="options-row" effect-hover effect-click>
+      <p>Theme Type</p>
+      <p>^</p>
+      
     </span>
-    </element-interaction-module>
-    <element-interaction-module hover click-effect>
-      <span class="options-row">
-        <p>Effects</p>
-        <p></p>
-      </span>
-    </element-interaction-module>
-    <element-interaction-module hover click-effect>
-      <span class="options-row">
-        <p>Background</p>
-        <p></p>
-      </span>
-    </element-interaction-module>
+    <span class="options-row" effect-hover effect-click>
+      <p>Layout Type</p>
+      <p>^</p>
+    </span>
+    <span class="options-row" effect-hover effect-click>
+      <p>Effects</p>
+      <p>^</p>
+    </span>
+    <span class="options-row" effect-hover effect-click>
+      <p>Background</p>
+      <p>^</p>
+    </span>
   </dropdown-box-module>
 `
+
+// <options-module>
+//           <header>Themes</header>
+//           <div>test</div>
+//         </options-module>
 
 customElements.define('options-component',
   class OptionsComponent extends HTMLElement {
@@ -47,8 +41,7 @@ customElements.define('options-component',
     connectedCallback() {
       this.optionsToggle.addEventListener('click', this.toggleOptionsDropdown);
       this.setDropdownText();
-    //  [...this.dropdownBox.children].forEach(child => child.children[0].children[2].addEventListener('click', this.toggleOptionDropdown));
-      this.dropdownBox.children[0].children[0].addEventListener('click', this.toggleOptionDropdown);
+      [...this.dropdownBox.children].forEach(child => child.addEventListener('click', this.toggleOptionDropdown));
     }
     
     static get observedAttributes() {
@@ -88,7 +81,16 @@ customElements.define('options-component',
     }
 
     toggleOptionDropdown() {
-      this.children[2].toggleAttribute('options-show');
+      // this.children[2].toggleAttribute('options-show');
+      const dropdownBoxInner = document.getElementById('options-dropdown-box').shadowRoot.children
+      for (let i = 1; i < dropdownBoxInner.length; ++i) {
+        const target = dropdownBoxInner[i];
+        if (target !== this) {
+          target.removeAttribute('options-show');
+        } else {
+          target.toggleAttribute('options-show')
+        }
+      }
     }
 
     toggleOptionsDropdown() {
@@ -101,11 +103,11 @@ customElements.define('options-component',
     }
 
     setThemeColorText() {
-      this.dropdownBox.children[0].children[0].children[0].textContent = this.themeColorText;
+      this.dropdownBox.children[0].children[0].textContent = this.themeColorText;
     }
     
     setLayoutStyleText() {
-      this.dropdownBox.children[1].children[0].children[0].textContent = this.layoutStyleText;
+      this.dropdownBox.children[1].children[0].textContent = this.layoutStyleText;
     }
   }
 )

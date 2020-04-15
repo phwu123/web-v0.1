@@ -1,5 +1,6 @@
 :root {
   --font-size: 10px;
+  --animation-duration: 0.5s;
 
   --color-main-bg: var(--light-color-main-bg);
   --color-font: var(--light-color-font);
@@ -34,4 +35,19 @@ time, mark, audio, video {
 	padding: 0;
 	border: 0;
 	vertical-align: baseline;
+}
+
+[effect-hover]:hover {
+  transition: background-color 0.5s;
+  background-color: var(--color-highlight-hover);
+  border-radius: 0.5em;
+}
+
+[effect-click] {
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
+[effect-click]:active {
+  filter: brightness(50%);
 }
