@@ -1,17 +1,19 @@
-import { setUpModule } from '../functions.js'
+import { initShadowRoot } from '../functions.js'
 
 customElements.define('dropdown-box-module',
   class DropdownBoxModule extends HTMLElement {
     constructor() {
       super();
-      setUpModule(this, 'DropdownBoxModule.css');
-      [...this.children].forEach(child =>
-        this.shadowRoot.appendChild(child)
-      );
+      initShadowRoot(this, 'DropdownBoxModule.css');
+      
+    }
+
+    connectedCallback() {
+      this.shadowRoot.appendChild(document.createElement('slot'))
     }
 
     static get observedAttributes() {
-      return ['layout-style', 'dropdown-open'];
+      return ['dropdown-open'];
     }
 
     attributeChangedCallback(name, oldVal, newVal) {
@@ -22,24 +24,25 @@ customElements.define('dropdown-box-module',
       }
     }
 
-    get layoutStyle() {
-      return this.getAttribute('layout-style')
-    }
-
-    set layoutStyle(val) {
-      this.setAttribute('layout-style', val)
-    }
-
     get dropdownOpen() {
       return this.getAttribute('dropdown-open') !== null;
     }
 
+    get contentHeight() {
+      return [...this.children].reduce((sum, child) => sum += child.offsetHeight, 0)
+    }
+
     toggleDropdown() {
       if (this.dropdownOpen) {
-        this.style.height = this.shadowRoot.children.offsetHeight + 'px';
-        this.style.height = [...this.shadowRoot.children].reduce((sum, child) => sum += child.offsetHeight, 0) + 'px'
+        this.style.height = this.contentHeight + 'px'
+        setTimeout(() => {
+          this.style.height = 'unset';
+        }, 500);
       } else {
-        this.style.height = 0;
+        this.style.height = this.contentHeight + 'px'
+        setTimeout(() => {
+          this.style.height = 0;
+        }, 0);
       }
     }
   }

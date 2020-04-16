@@ -12,7 +12,7 @@ customElements.define('navigation-component',
     }
 
     connectedCallback() {
-      [...this.children].slice(0, 3).forEach(child => child.addEventListener('click', this.navigateToPage))
+      [...this.children].slice(0, 3).forEach(child => child.addEventListener('click', this.navigateToPage, false))
       // change when window resize listener ready for mobile
       this.children[3].appendChild(document.createElement('options-component'));
     }

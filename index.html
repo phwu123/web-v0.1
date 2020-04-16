@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="./src/css/_base.css" />
   <link rel="stylesheet" type="text/css" href="index.css" />
 
   <script type="module" src="./src/components/MainComponent.mjs"></script>
@@ -35,6 +36,7 @@
   
   <script type="module" src="./src/components/OptionsComponent/OptionsComponent.mjs"></script>
   <script type="module" src="./src/components/OptionsComponent/OptionsChildren/OptionsThemes.mjs"></script>
+  <script type="module" src="./src/components/OptionsComponent/OptionsChildren/OptionsLayouts.mjs"></script>
 
 
   <script type="module" src="./src/modules/DropdownBoxModule.mjs"></script>
@@ -46,16 +48,6 @@
     <p class="javascript-disabled">Please enable javascript</p>
   </noscript>
   <main-component id="main" layout-style="basic" class="main-component"></main-component>
-
-  <template id="base-css">
-    <link rel="stylesheet" type="text/css" href="./css/_base.css">
-  </template>
-  <template id="test">
-    <span class="options-row" effect-hover effect-click>
-      <p>Category Title</p>
-      <p>^</p>
-    </span>
-  </template>
 </body>
 
 </html>

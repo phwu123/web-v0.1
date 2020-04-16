@@ -1,37 +1,35 @@
-import { createElementTemplate, setUpModule, initAttributes, createBaseCss, createCssLink } from '../functions.js'
+import { initBasicModule } from '../functions.js'
 
 const OptionsModuleBasicTemplate = `
   <span class="options-row" effect-hover effect-click>
     <slot>Category Title</slot>
     <p>^</p>
   </span>
+  <dropdown-box-module></dropdown-box-module>
 `
 
-createElementTemplate('options-module',
+customElements.define('options-module',
   class OptionsModule extends HTMLElement {
     constructor() {
       super();
-    initAttributes(this);
-  this.attachShadow({mode: 'open'});
-      const shadow = this.shadowRoot;
-      shadow.appendChild(createBaseCss())
-      shadow.appendChild(createCssLink('OptionsModule.css'))
+      initBasicModule(this, 'OptionsModule.css');
       this.shadowRoot.innerHTML += OptionsModuleBasicTemplate
-      
+      this.dropdownBox = this.shadowRoot.children[3]
     }
 
     static get observedAttributes() {
       return ['layout-style', 'theme-color', 'options-show'];
     }
 
-    attributesChangedCallback(name, oldVal, newVal) {
+    attributeChangedCallback(name, oldVal, newVal) {
       switch (name) {
         case 'options-show':
-          console.log(newVal)
-       //   this.toggleOptionsShow();
+          this.toggleOptionsShow();
           break;
       }
     }
+
+
 
     get optionsShow() {
       return this.getAttribute('options-show') !== null
@@ -39,11 +37,9 @@ createElementTemplate('options-module',
 
     toggleOptionsShow() {
       if (this.optionsShow) {
-        setTimeout(() => {
-          this.children[1].setAttribute('dropdown-open', '');
-        }, 500);
+        this.dropdownBox.setAttribute('dropdown-open', '');
       } else {
-        this.children[1].removeAttribute('dropdown-open');
+        this.dropdownBox.removeAttribute('dropdown-open');
       }
     }
   }

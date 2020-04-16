@@ -12,11 +12,11 @@
   text-transform: capitalize;
 }
 
-:host .options-row > p:nth-child(2) {
+:host .options-row > :nth-child(2) {
   transition: transform var(--animation-duration) ease-in;
   transform: rotate3d(0, 0, 1, 90deg);
 }
 
-:host .options-row[options-show] > p:nth-child(2) {
+:host([options-show]) .options-row > :nth-child(2) {
   transform: rotate3d(0, 0, 1, 180deg) translate3d(-0.1em, 0.1em, 0);
 }

@@ -1,25 +1,23 @@
-import { createElementTemplate, initAttributes } from '../../../functions.js'
+const OptionsThemesDropdownTemplate = `
+  <span>a</span>
+`
 
-createElementTemplate('options-themes',
+customElements.define('options-themes',
   class OptionsThemes extends customElements.get('options-module') {
     constructor() {
       super();
-      // [...this.children].forEach(child =>
-      //   this.shadowRoot.appendChild(child)
-      // );
-      this.appendChild(document.createTextNode(this.themeColor || this.getAttribute('theme-color')))
+      this.appendChild(document.createTextNode(this.themeColor))
+      this.shadowRoot.children[3].innerHTML += OptionsThemesDropdownTemplate;
+      // this.innerHTML += OptionsThemesDropdownTemplate;
     }
 
     connectedCallback() {
     //  this.setThemeColorText();
     }
 
-    static get observedAttributes() {
-      return ['layout-style', 'theme-color'];
-    }
 
     setThemeColorText() {
-      this.shadowRoot.children[1].children[0].textContent = this.themeColor || this.getAttribute('theme-color');
+      // this.childNodes[0].textContent = this.themeColor;
     }
   }
 )

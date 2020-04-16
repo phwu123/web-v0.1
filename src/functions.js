@@ -1,4 +1,4 @@
-export function createBaseCss() {
+function createBaseCss() {
   const link = document.createElement('link');
   link.rel = 'stylesheet';
   link.type = 'text/css';
@@ -29,7 +29,19 @@ export function setUpModule(node, cssName) {
   node.shadowRoot.appendChild(createCssLink(cssName));
 }
 
-export function createElementTemplate(tag, module) {
+export function initShadowRoot(node, cssName) {
+  node.attachShadow({mode: 'open'});
+  node.shadowRoot.appendChild(createBaseCss());
+  node.shadowRoot.appendChild(createCssLink(cssName));
+}
+
+export function initBasicModule(node, cssName) {
+  initAttributes(node);
+  setupAttributesGetSet(node);
+  initShadowRoot(node, cssName);
+}
+
+export function setupAttributesGetSet(node) {
   function setUpAttribute(attribute) {
     switch (attribute) {
       case 'layout-style':
@@ -40,20 +52,17 @@ export function createElementTemplate(tag, module) {
         return; // do nothing
     }
   }
-
-  module.observedAttributes.forEach(attribute => {
-    const attributeName = setUpAttribute(attribute);
+  node.constructor.observedAttributes.forEach(attr => {
+    const attributeName = setUpAttribute(attr);
     if (attributeName) {
-      Object.defineProperty(module, attributeName, {
+      Object.defineProperty(node, attributeName, {
         get: () => {
-          return this.getAttribute(attribute);
+          return node.getAttribute(attr);
         },
         set: (val) => {
-          this.setAttribute(attribute, val)
+          node.setAttribute(attr, val)
         }
       })
     }
   })
-
-  return customElements.define(tag, module);
 }
