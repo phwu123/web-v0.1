@@ -5,9 +5,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="index.css" />
+
   <script type="module" src="./src/components/MainComponent.mjs"></script>
+
   <script type="module" src="./src/components/NavigationComponent.mjs"></script>
+
+
   <script type="module" src="./src/components/SkillsComponent/SkillsComponent.mjs"></script>
+
+  <script type="module" src="./src/modules/SkillTypeModule.mjs"></script>
+  <script type="module" src="./src/modules/SkillSetModule.mjs"></script>
+
   <script type="module" src="./src/components/SkillsComponent/SkillsChildren/SkillsJavascript.mjs"></script>
   <script type="module" src="./src/components/SkillsComponent/SkillsChildren/SkillsEssentials.mjs"></script>
   <script type="module" src="./src/components/SkillsComponent/SkillsChildren/SkillsDatabases.mjs"></script>
@@ -16,18 +24,18 @@
   <script type="module" src="./src/components/SkillsComponent/SkillsChildren/SkillsDeployment.mjs"></script>
   <script type="module" src="./src/components/ContactComponent/ContactComponent.mjs"></script>
 
-  <script type="module" src="./src/modules/SkillTypeModule.mjs"></script>
-  <script type="module" src="./src/modules/SkillSetModule.mjs"></script>
+  
+  <script type="module" src="./src/modules/ExperienceModule.mjs"></script>
 
   <script type="module" src="./src/components/ExperienceComponent/ExperienceComponent.mjs"></script>
   <script type="module" src="./src/components/ExperienceComponent/ExperienceChildren/ExperienceDoubleDoor.mjs"></script>
 
-  <script type="module" src="./src/modules/ExperienceModule.mjs"></script>
 
+  <script type="module" src="./src/modules/OptionsModule.mjs"></script>
+  
   <script type="module" src="./src/components/OptionsComponent/OptionsComponent.mjs"></script>
   <script type="module" src="./src/components/OptionsComponent/OptionsChildren/OptionsThemes.mjs"></script>
 
-  <script type="module" src="./src/modules/OptionsModule.mjs"></script>
 
   <script type="module" src="./src/modules/DropdownBoxModule.mjs"></script>
   <title>Software Engineer</title>
@@ -38,6 +46,16 @@
     <p class="javascript-disabled">Please enable javascript</p>
   </noscript>
   <main-component id="main" layout-style="basic" class="main-component"></main-component>
+
+  <template id="base-css">
+    <link rel="stylesheet" type="text/css" href="./css/_base.css">
+  </template>
+  <template id="test">
+    <span class="options-row" effect-hover effect-click>
+      <p>Category Title</p>
+      <p>^</p>
+    </span>
+  </template>
 </body>
 
 </html>

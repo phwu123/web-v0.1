@@ -7,7 +7,7 @@ customElements.define('dropdown-box-module',
       setUpModule(this, 'DropdownBoxModule.css');
       [...this.children].forEach(child =>
         this.shadowRoot.appendChild(child)
-      )
+      );
     }
 
     static get observedAttributes() {

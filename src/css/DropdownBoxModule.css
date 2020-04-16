@@ -2,25 +2,7 @@
 
 :host {
   overflow: hidden;
-  transition: height var(--animation-duration) ease-in;
+  transition: height var(--animation-duration);
   height: 0;
-  font-size: 0.8em;
   display: grid;
-}
-
-:host .options-row {
-  padding: 0.5em;
-  margin-left: 0.75em;
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-}
-
-:host .options-row > p:nth-child(2) {
-  transition: transform var(--animation-duration) ease-in;
-  transform: rotate3d(0, 0, 1, 90deg);
-}
-
-:host .options-row[options-show] > p:nth-child(2) {
-  transform: rotate3d(0, 0, 1, 180deg) translate3d(-0.1em, 0.1em, 0);
 }

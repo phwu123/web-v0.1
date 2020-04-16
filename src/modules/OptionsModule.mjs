@@ -1,14 +1,23 @@
-import { createElementTemplate, setUpModule } from '../functions.js'
+import { createElementTemplate, setUpModule, initAttributes, createBaseCss, createCssLink } from '../functions.js'
+
+const OptionsModuleBasicTemplate = `
+  <span class="options-row" effect-hover effect-click>
+    <slot>Category Title</slot>
+    <p>^</p>
+  </span>
+`
 
 createElementTemplate('options-module',
   class OptionsModule extends HTMLElement {
     constructor() {
       super();
-      setUpModule(this, 'OptionsModule.css');
-      this.shadowRoot.appendChild(this.children[0]);
-      const box = document.createElement('dropdown-box-module')
-      box.appendChild(this.children[0])
-      this.shadowRoot.appendChild(box)
+    initAttributes(this);
+  this.attachShadow({mode: 'open'});
+      const shadow = this.shadowRoot;
+      shadow.appendChild(createBaseCss())
+      shadow.appendChild(createCssLink('OptionsModule.css'))
+      this.shadowRoot.innerHTML += OptionsModuleBasicTemplate
+      
     }
 
     static get observedAttributes() {
@@ -19,7 +28,7 @@ createElementTemplate('options-module',
       switch (name) {
         case 'options-show':
           console.log(newVal)
-          this.toggleOptionsShow();
+       //   this.toggleOptionsShow();
           break;
       }
     }

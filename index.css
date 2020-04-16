@@ -1,5 +1,25 @@
 @import '/src/css/_base.css';
 
+:root {
+  --font-size: 10px;
+  --animation-duration: 0.5s;
+
+  --color-main-bg: var(--light-color-main-bg);
+  --color-font: var(--light-color-font);
+  --color-font-sub: var(--light-color-font-sub);
+  --color-highlight-hover: var(--light-color-highlight-hover);
+
+  --light-color-main-bg: #888;
+  --light-color-font: #111;
+  --light-color-font-sub: #555;
+  --light-color-highlight-hover: #0bf;
+
+  --dark-color-main-bg: black;
+  --dark-color-font: white;
+  --dark-color-font-sub: grey;
+  --dark-color-highlight-hover: red;
+}
+
 body {
   background-color: var(--color-main-bg);
   font-size: var(--font-size);

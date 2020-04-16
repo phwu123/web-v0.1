@@ -39,7 +39,7 @@ customElements.define('main-component',
     connectedCallback() {
       setTimeout(() => {
         document.getElementById('main').classList.add('opacity-1')
-      }, 100);
+      }, 200);
     }
   }
 )

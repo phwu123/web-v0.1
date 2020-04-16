@@ -1,0 +1,4 @@
+1) workaround for css painting
+2) new constructor function to add getters/setters
+3) refactor old components for extending modules
+4) use slots

@@ -1,11 +1,22 @@
-@import '/src/css/_base.css';
-
 :host {
-  position: absolute;
-  transition: transform 0.5s;
-  background-color: blue;
+  font-size: 0.8em;
+  transition: transform var(--animation-duration);
+  margin-left: 0.75em;
+  position: relative;
 }
 
-:host([layout-style="basic"][options-show]) {
-  transform: translate3d(200px, 0, 0);
+:host .options-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5em;
+  text-transform: capitalize;
+}
+
+:host .options-row > p:nth-child(2) {
+  transition: transform var(--animation-duration) ease-in;
+  transform: rotate3d(0, 0, 1, 90deg);
+}
+
+:host .options-row[options-show] > p:nth-child(2) {
+  transform: rotate3d(0, 0, 1, 180deg) translate3d(-0.1em, 0.1em, 0);
 }

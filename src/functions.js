@@ -1,9 +1,17 @@
+export function createBaseCss() {
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = './src/css/_base.css';
+  return link;
+}
+
 export function createCssLink(cssName) {
   const link = document.createElement('link')
   link.rel = 'stylesheet';
   link.type = 'text/css';
   link.href = `./src/css/${cssName}`
-  return link
+  return link;
 }
 
 export function initAttributes(node) {
