@@ -29,8 +29,6 @@ customElements.define('options-module',
       }
     }
 
-
-
     get optionsShow() {
       return this.getAttribute('options-show') !== null
     }

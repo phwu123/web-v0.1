@@ -5,7 +5,8 @@ customElements.define('dropdown-box-module',
     constructor() {
       super();
       initShadowRoot(this, 'DropdownBoxModule.css');
-      
+      this.animationDuration = 500;
+      this.isClosing = false;
     }
 
     connectedCallback() {
@@ -36,13 +37,19 @@ customElements.define('dropdown-box-module',
       if (this.dropdownOpen) {
         this.style.height = this.contentHeight + 'px'
         setTimeout(() => {
-          this.style.height = 'unset';
-        }, 500);
+          if (!this.isClosing) {
+            this.style.height = 'unset';
+          }
+        }, this.animationDuration);
       } else {
+        this.isClosing = true
         this.style.height = this.contentHeight + 'px'
         setTimeout(() => {
           this.style.height = 0;
-        }, 0);
+        }, 10); // needs delay to work correctly?
+        setTimeout(() => {
+          this.isClosing = false;
+        }, this.animationDuration);
       }
     }
   }
