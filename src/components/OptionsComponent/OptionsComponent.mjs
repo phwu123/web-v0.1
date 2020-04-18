@@ -31,12 +31,10 @@ customElements.define('options-component',
       this.innerHTML = OptionsComponentTemplateBasic;
       this.optionsToggle = document.getElementById('options-toggle')
       this.dropdownBox = document.getElementById('options-dropdown-box')
-      this.optionCategories = [...this.dropdownBox.children]
     }
 
     connectedCallback() {
       this.optionsToggle.addEventListener('click', this.toggleOptionsDropdown, false);
-      this.optionCategories.forEach(child => child.addEventListener('click', this.toggleOptionDropdown, false))
     }
     
     static get observedAttributes() {
@@ -45,16 +43,6 @@ customElements.define('options-component',
 
     toggleOptionsDropdown() {
       document.getElementById('options-dropdown-box').toggleAttribute('dropdown-open');
-    }
-
-    toggleOptionDropdown() {
-      [...document.getElementById('options-dropdown-box').children].forEach(child => {
-        if (this !== child) {
-          child.removeAttribute('options-show');
-        } else {
-          child.toggleAttribute('options-show')
-        }
-      })
     }
   }
 )

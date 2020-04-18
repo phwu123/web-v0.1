@@ -1,0 +1,23 @@
+:host {
+  position: relative;
+  border-radius: 50%;
+  border: 1px solid var(--color-button);
+  height: 0.8em;
+  width: 0.8em;
+}
+
+:host span {
+  position: absolute;
+  left: 0.08em;
+  top: 0.08em;
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  background-color: var(--color-button);
+  opacity: 0;
+  transition: opacity var(--animation-duration);
+}
+
+:host([is-selected]) span {
+  opacity: 1;
+}

@@ -15,6 +15,8 @@ customElements.define('options-module',
       initBasicModule(this, 'OptionsModule.css');
       this.shadowRoot.innerHTML += OptionsModuleBasicTemplate
       this.dropdownBox = this.shadowRoot.children[3]
+      this.toggleOptionDropdown = this.toggleOptionDropdown.bind(this);
+      this.shadowRoot.children[2].addEventListener('click', this.toggleOptionDropdown)
     }
 
     static get observedAttributes() {
@@ -31,6 +33,10 @@ customElements.define('options-module',
 
     get optionsShow() {
       return this.getAttribute('options-show') !== null
+    }
+
+    toggleOptionDropdown() {
+      this.toggleAttribute('options-show');
     }
 
     toggleOptionsShow() {

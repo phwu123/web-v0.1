@@ -1,5 +1,3 @@
-@import '/src/css/_base.css';
-
 :host {
   overflow: hidden;
   transition: height var(--animation-duration);

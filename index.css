@@ -6,16 +6,19 @@
   --color-font: var(--light-color-font);
   --color-font-sub: var(--light-color-font-sub);
   --color-highlight-hover: var(--light-color-highlight-hover);
+  --color-button: var(--light-color-button);
 
   --light-color-main-bg: #888;
   --light-color-font: #111;
   --light-color-font-sub: #555;
   --light-color-highlight-hover: #0bf;
+  --light-color-button: #555;
 
   --dark-color-main-bg: black;
   --dark-color-font: white;
   --dark-color-font-sub: grey;
   --dark-color-highlight-hover: red;
+  --dark-color-button: white;
 }
 
 body {

@@ -20,3 +20,17 @@
 :host([options-show]) .options-row > :nth-child(2) {
   transform: rotate3d(0, 0, 1, 180deg) translate3d(-0.1em, 0.1em, 0);
 }
+
+:host dropdown-box-module {
+  padding-left: 0.5em;
+}
+
+.button-row {
+  font-size: 0.8em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em;
+  margin: 0 0.5em;
+  cursor: pointer;
+}
