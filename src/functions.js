@@ -23,6 +23,18 @@ export function initAttributes(node) {
   };
 }
 
+export function initTheme(node) {
+  if (!node.getAttribute('theme-color')) {
+    node.setAttribute('theme-color', 'light');
+  };
+}
+
+export function initLayout(node) {
+  if (!node.getAttribute('layout-style')) {
+    node.setAttribute('layout-style', 'basic');
+  };
+}
+
 export function setUpModule(node, cssName) {
   initAttributes(node);
   node.attachShadow({mode: 'open'});
@@ -36,22 +48,23 @@ export function initShadowRoot(node, cssName) {
 }
 
 export function initBasicModule(node, cssName) {
-  initAttributes(node);
+  // initAttributes(node);
   setupAttributesGetSet(node);
   initShadowRoot(node, cssName);
 }
 
-export function setupAttributesGetSet(node) {
-  function setUpAttribute(attribute) {
-    switch (attribute) {
-      case 'layout-style':
-        return 'layoutStyle';
-      case 'theme-color':
-        return 'themeColor';
-      default:
-        return; // do nothing
-    }
+function setUpAttribute(attribute) {
+  switch (attribute) {
+    case 'layout-style':
+      return 'layoutStyle';
+    case 'theme-color':
+      return 'themeColor';
+    default:
+      return; // do nothing
   }
+}
+
+export function setupAttributesGetSet(node) {
   node.constructor.observedAttributes.forEach(attr => {
     const attributeName = setUpAttribute(attr);
     if (attributeName) {

@@ -20,10 +20,10 @@ customElements.define('options-module',
     }
 
     static get observedAttributes() {
-      return ['layout-style', 'theme-color', 'options-show'];
+      return ['layout-style', 'options-show'];
     }
 
-    attributeChangedCallback(name, oldVal, newVal) {
+    attributeChangedCallback(name) {
       switch (name) {
         case 'options-show':
           this.toggleOptionsShow();

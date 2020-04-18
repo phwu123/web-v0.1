@@ -1,4 +1,4 @@
-import { initShadowRoot } from '../functions.js'
+import { initShadowRoot, initAttributes } from '../functions.js'
 
 const ButtonRadioTemplate = `
   <span></span>
@@ -8,18 +8,30 @@ customElements.define('button-radio',
   class ButtonRadio extends HTMLElement {
     constructor() {
       super();
+      initAttributes(this);
       initShadowRoot(this, 'ButtonRadio.css');
       this.shadowRoot.innerHTML += ButtonRadioTemplate;
-      this.addEventListener('change-theme-color', this.changeThemeColor, false);
     }
 
     static get observedAttributes() {
-      return ['theme-color','selected-value', 'is-selected'];
+      return ['theme-color', 'layout-style', 'selected-value', 'is-selected'];
     }
 
-    changeThemeColor(e) {
-      console.log(e)
-      this.setAttribute('theme-color', e.detail)
+    attributeChangedCallback(name, oldVal, newVal) {
+      switch(name) {
+        case 'theme-color':
+          if (newVal === this.getAttribute('selected-value')) {
+            this.setAttribute('is-selected', '');
+          } else {
+            this.removeAttribute('is-selected');
+          }
+          case 'layout-style':
+            if (newVal === this.getAttribute('selected-value')) {
+              this.setAttribute('is-selected', '');
+            } else {
+              this.removeAttribute('is-selected');
+            }
+      }
     }
   }
 )

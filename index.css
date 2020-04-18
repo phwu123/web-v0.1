@@ -25,6 +25,7 @@ body {
   background-color: var(--color-main-bg);
   font-size: var(--font-size);
   color: var(--color-font);
+  transition: background-color var(--animation-duration), color var(--animation-duration);
 }
 
 .javascript-disabled {
