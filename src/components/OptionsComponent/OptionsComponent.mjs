@@ -1,4 +1,4 @@
-import { initAttributes, setupAttributesGetSet } from '../../functions.js';
+import { initAttributes } from '../../functions.js';
 
 const OptionsComponentTemplateBasic = `
   <header id="options-toggle" class="navigation-item" effect-hover effect-click>Options</header>
@@ -27,7 +27,6 @@ customElements.define('options-component',
     constructor() {
       super();
       initAttributes(this);
-      setupAttributesGetSet(this);
       this.innerHTML = OptionsComponentTemplateBasic;
       this.optionsToggle = document.getElementById('options-toggle')
       this.dropdownBox = document.getElementById('options-dropdown-box')

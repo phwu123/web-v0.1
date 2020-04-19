@@ -35,22 +35,19 @@ export function initLayout(node) {
   };
 }
 
-export function setUpModule(node, cssName) {
-  initAttributes(node);
-  node.attachShadow({mode: 'open'});
-  node.shadowRoot.appendChild(createCssLink(cssName));
-}
-
-export function initShadowRoot(node, cssName) {
+export function initShadowRoot(node, cssName, template) {
   node.attachShadow({mode: 'open'});
   node.shadowRoot.appendChild(createBaseCss());
   node.shadowRoot.appendChild(createCssLink(cssName));
+  if (template) {
+    node.shadowRoot.innerHTML += template;
+  }
 }
 
-export function initBasicModule(node, cssName) {
+export function initBasicModule(node, cssName, template) {
   // initAttributes(node);
   setupAttributesGetSet(node);
-  initShadowRoot(node, cssName);
+  initShadowRoot(node, cssName, template);
 }
 
 function setUpAttribute(attribute) {

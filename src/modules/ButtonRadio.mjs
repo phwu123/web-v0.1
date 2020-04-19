@@ -1,16 +1,12 @@
 import { initShadowRoot, initAttributes } from '../functions.js'
 
-const ButtonRadioTemplate = `
-  <span></span>
-`
-
 customElements.define('button-radio',
   class ButtonRadio extends HTMLElement {
     constructor() {
       super();
       initAttributes(this);
       initShadowRoot(this, 'ButtonRadio.css');
-      this.shadowRoot.innerHTML += ButtonRadioTemplate;
+      this.shadowRoot.appendChild(document.createElement('span'))
     }
 
     static get observedAttributes() {

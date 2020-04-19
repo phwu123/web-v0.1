@@ -1,20 +1,27 @@
 @import '/src/css/_base.css';
 
-:host([layout-style="basic"]) {
+:host {
   display: grid;
   grid-row-gap: 1em;
   align-content: flex-start;
 }
 
-:host > p {
+:host > span {
   font-size: 1.4em;
-}
-
-:host([layout-style="basic"]) > p {
   text-decoration: underline;
 }
 
 :host > div {
   display: grid;
   grid-row-gap: 0.3em;
+}
+
+:host skill-set-module > :nth-child(2) {
+  font-size: 0.7em;
+  color: var(--color-font-sub);
+}
+
+:host skill-set-module > :nth-child(2):after  {
+  content: ' ';
+  white-space: pre;
 }

@@ -1,13 +1,11 @@
-import { setUpModule } from '../functions.js'
+import { initBasicModule, initLayout } from '../functions.js'
 
 customElements.define('skill-type-module',
   class SkillTypeModule extends HTMLElement {
     constructor() {
       super();
-      setUpModule(this, 'SkillTypeModule.css');
-      [...this.children].forEach(child =>
-        this.shadowRoot.appendChild(child)
-      )
+      initLayout(this);
+      initBasicModule(this, 'SkillTypeModule.css');
     }
 
     static get observedAttributes() {

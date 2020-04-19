@@ -1,4 +1,4 @@
-import { initAttributes } from '../../functions.js';
+import { initLayout } from '../../functions.js';
 
 const ContactComponentBasicTemplate = `
   <header class="component-header">Contact</header>
@@ -19,7 +19,7 @@ customElements.define('contact-component',
   class ContactComponent extends HTMLElement {
     constructor() {
       super();
-      initAttributes(this);
+      initLayout(this);
       this.innerHTML = ContactComponentBasicTemplate
     }
 
@@ -39,14 +39,6 @@ customElements.define('contact-component',
 
     set layoutStyle(val) {
       this.setAttribute('layout-style', val)
-    }
-
-    get themeColor() {
-      return this.getAttribute('theme-color');
-    }
-
-    set themeColor(val) {
-      this.setAttribute('theme-color', val)
     }
 
     get githubImage() {

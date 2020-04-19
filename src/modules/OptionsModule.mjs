@@ -1,6 +1,6 @@
-import { initBasicModule } from '../functions.js'
+import { initBasicModule, initAttributes } from '../functions.js'
 
-const OptionsModuleBasicTemplate = `
+const template = `
   <span class="options-row" effect-hover effect-click>
     <slot>Category Title</slot>
     <p>^</p>
@@ -12,15 +12,15 @@ customElements.define('options-module',
   class OptionsModule extends HTMLElement {
     constructor() {
       super();
-      initBasicModule(this, 'OptionsModule.css');
-      this.shadowRoot.innerHTML += OptionsModuleBasicTemplate
+      initAttributes(this);
+      initBasicModule(this, 'OptionsModule.css', template);
       this.dropdownBox = this.shadowRoot.children[3]
       this.toggleOptionDropdown = this.toggleOptionDropdown.bind(this);
       this.shadowRoot.children[2].addEventListener('click', this.toggleOptionDropdown)
     }
 
     static get observedAttributes() {
-      return ['layout-style', 'options-show'];
+      return ['layout-style', 'theme-color','options-show'];
     }
 
     attributeChangedCallback(name) {

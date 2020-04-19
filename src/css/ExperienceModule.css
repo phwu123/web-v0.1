@@ -1,5 +1,3 @@
-@import '/src/css/_base.css';
-
 :host([layout-style="basic"]) {
   display: grid;
   grid-row-gap: 0.5em;
@@ -13,10 +11,6 @@
   text-decoration: underline;
 }
 
-:host([layout-style="basic"]) > div > :nth-child(2) {
+:host([layout-style="basic"]) > div > :nth-child(2n) {
   font-size: 0.8em;
-}
-
-:host([layout-style="basic"]) li {
-  padding: 0.2em 0;
 }
