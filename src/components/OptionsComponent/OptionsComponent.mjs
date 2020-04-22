@@ -3,7 +3,7 @@ import { initAttributes } from '../../functions.js';
 const OptionsComponentTemplateBasic = `
   <header id="options-toggle" class="navigation-item" effect-hover effect-click>Options</header>
   <dropdown-box-module id="options-dropdown-box">
-    <options-themes></options-themes>
+    <options-themes id="option-themes"></options-themes>
     <options-layouts></options-layouts>
   </dropdown-box-module>
 `
