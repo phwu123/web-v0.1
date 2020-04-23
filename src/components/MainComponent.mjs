@@ -11,6 +11,7 @@ const MainComponentTemplate = `
     <contact-component id="component-contact" class="contact-component"></contact-component>
   </main>
 `
+
 customElements.define('main-component',
   class MainComponent extends HTMLElement {
     constructor() {
@@ -33,8 +34,15 @@ customElements.define('main-component',
 
     connectedCallback() {
       setTimeout(() => {
-        document.getElementById('main').classList.add('opacity-1')
+        document.getElementById('main').classList.add('opacity-1');
       }, 200);
+      this.addEventListener('change-layout', this.changeLayout);
+    }
+
+    changeLayout(e) {
+      document.getElementById('content-holder').scroll({top: 0, left: 0})
+      this.setAttribute('layout-style', e.detail);
+      this.children[0].children[0].setAttribute('layout-style', e.detail);
     }
   }
 )

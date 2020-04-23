@@ -68,9 +68,14 @@ body {
   flex-direction: column;
 }
 
-.main-component[layout-style=basic] > .content-holder {
+.main-component > .content-holder {
   overflow-y: auto;
   padding: 5% 0;
+}
+
+.main-component[layout-style=gallery] > .content-holder {
+  display: grid;
+  grid-template-columns: repeat(4, 100%);
 }
 
 .main-component .content-component {

@@ -7,14 +7,15 @@ customElements.define('navigation-component',
   class NavigationComponent extends HTMLElement {
     constructor() {
       super();
+      this.navigateToPage = this.navigateToPage.bind(this)
       this.innerHTML = NavigationComponentTemplateBasic;
       [...this.children].forEach(child => child.addEventListener('click', this.navigateToPage, false))
+      this.contentHolder = document.getElementById('content-holder')
     }
 
     navigateToPage(e) {
       const target = document.getElementById(`component-${e.target.id.slice(11)}`)
-      const contentHolder = document.getElementById('content-holder')
-      contentHolder.scroll({top: target.offsetTop - contentHolder.offsetTop, behavior: 'smooth'})
+      this.contentHolder.scroll({top: target.offsetTop - this.contentHolder.offsetTop, left: target.offsetLeft - this.contentHolder.offsetLeft, behavior: 'smooth'})
     }
   }
 )

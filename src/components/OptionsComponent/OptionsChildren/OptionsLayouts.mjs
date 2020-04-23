@@ -14,6 +14,7 @@ customElements.define('options-layouts',
     constructor() {
       super();
       this.appendChild(document.createTextNode(this.layoutStyle))
+      this.setLayoutStyleText = this.setLayoutStyleText.bind(this);
       this.shadowRoot.children[3].innerHTML += template;
       [...this.shadowRoot.children[3].children].forEach(child => child.addEventListener('click', this.setLayoutStyleText, false))
     }
@@ -23,10 +24,18 @@ customElements.define('options-layouts',
       const layout = target.children[1].getAttribute('selected-value');
       const OptionsLayouts = document.getElementById('options-layouts');
       if (layout !== OptionsLayouts.getAttribute('layout-style')) {
+        this.dispatchEvent(this.changeLayoutEvent(layout))
         OptionsLayouts.setAttribute('layout-style', layout);
         [...target.parentNode.children].forEach(child => child.children[1].setAttribute('layout-style', layout))
         OptionsLayouts.textContent = layout;
       }
+    }
+
+    changeLayoutEvent(layout) {
+      return new CustomEvent('change-layout', {
+        detail: layout,
+        bubbles: true
+      })
     }
   }
 )
