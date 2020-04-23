@@ -42,7 +42,6 @@ customElements.define('main-component',
     changeLayout(e) {
       document.getElementById('content-holder').scroll({top: 0, left: 0})
       this.setAttribute('layout-style', e.detail);
-      this.children[0].children[0].setAttribute('layout-style', e.detail);
     }
   }
 )

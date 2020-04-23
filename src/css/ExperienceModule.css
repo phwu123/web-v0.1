@@ -8,6 +8,10 @@
   text-decoration: underline;
 }
 
-:host > div > :nth-child(2n) {
+:host > div > :nth-child(1) {
+  color: var(--color-font-sub);
+}
+
+:host > div > :nth-child(2) {
   font-size: 0.8em;
 }
