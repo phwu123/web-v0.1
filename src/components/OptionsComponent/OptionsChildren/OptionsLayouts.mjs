@@ -1,5 +1,12 @@
-const OptionsLayoutsDropdownTemplate = `
-  <span slot="sub-options">a</span>
+const template = `
+  <span class="button-row" effect-hover effect-click>
+    <label>Basic</label>
+    <button-radio target-type="layout-style" selected-value="basic" is-selected></button-radio>
+  </span>
+  <span class="button-row" effect-hover effect-click>
+    <label>Gallery</label>
+    <button-radio target-type="layout-style" selected-value="gallery"></button-radio>
+  </span>
 `
 
 customElements.define('options-layouts',
@@ -7,16 +14,19 @@ customElements.define('options-layouts',
     constructor() {
       super();
       this.appendChild(document.createTextNode(this.layoutStyle))
-      this.innerHTML += OptionsLayoutsDropdownTemplate;
+      this.shadowRoot.children[3].innerHTML += template;
+      [...this.shadowRoot.children[3].children].forEach(child => child.addEventListener('click', this.setLayoutStyleText, false))
     }
 
-    connectedCallback() {
-    //  this.setLayoutStyleText();
-    }
-
-
-    setLayoutStyleText() {
-      // this.childNodes[0].textContent = this.layoutStyle;
+    setLayoutStyleText(e) {
+      const target = e.currentTarget
+      const layout = target.children[1].getAttribute('selected-value');
+      const OptionsLayouts = document.getElementById('options-layouts');
+      if (layout !== OptionsLayouts.getAttribute('layout-style')) {
+        OptionsLayouts.setAttribute('layout-style', layout);
+        [...target.parentNode.children].forEach(child => child.children[1].setAttribute('layout-style', layout))
+        OptionsLayouts.textContent = layout;
+      }
     }
   }
 )

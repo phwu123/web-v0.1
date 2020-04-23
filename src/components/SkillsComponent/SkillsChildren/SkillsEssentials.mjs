@@ -6,7 +6,7 @@ const SkillsEssentialsBasicTemplate = `
     </skill-set-module>
     <skill-set-module>
       <p>CSS3</p>
-      <p slot="skill-examples">Sass</p>
+      <p slot="skill-examples">Scss / CSS Modules</p>
     </skill-set-module>
   </div>
 `

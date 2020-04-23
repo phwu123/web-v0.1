@@ -1,16 +1,13 @@
-:host([layout-style="basic"]) {
+:host {
   display: grid;
   grid-row-gap: 0.5em;
 }
 
-:host a {
+:host > a {
   font-size: 1.4em;
-}
-
-:host([layout-style="basic"]) > a {
   text-decoration: underline;
 }
 
-:host([layout-style="basic"]) > div > :nth-child(2n) {
+:host > div > :nth-child(2n) {
   font-size: 0.8em;
 }

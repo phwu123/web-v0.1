@@ -1,4 +1,4 @@
-import { initBasicModule, initAttributes } from '../functions.js'
+import { initAttributes, initBasicModule } from '../functions.js'
 
 const template = `
   <span class="options-row" effect-hover effect-click>
@@ -20,7 +20,7 @@ customElements.define('options-module',
     }
 
     static get observedAttributes() {
-      return ['layout-style', 'theme-color','options-show'];
+      return ['options-show', 'theme-color', 'layout-style'];
     }
 
     attributeChangedCallback(name) {

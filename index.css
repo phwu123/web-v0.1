@@ -48,22 +48,22 @@ body {
   opacity: 1;
 }
 
-.main-component[layout-style=basic] {
+.main-component {
   grid-template-columns: 200px 1fr;
 }
 
-.main-component[layout-style=basic] > .navigation-component {
+.main-component > .navigation-component {
   display: flex;
   flex-direction: column;
   padding: 0 1em;
   margin-top: 80%;
 }
 
-.main-component[layout-style=basic] > .navigation-component .navigation-item {
+.main-component > .navigation-component .navigation-item {
   padding: 0.5em;
 }
 
-.main-component[layout-style=basic] options-component {
+.main-component options-component {
   display: flex;
   flex-direction: column;
 }
@@ -73,7 +73,7 @@ body {
   padding: 5% 0;
 }
 
-.main-component[layout-style=basic] .content-component {
+.main-component .content-component {
   display: grid;
   align-content: flex-start;
   grid-gap: 1em;
@@ -81,9 +81,10 @@ body {
   padding: 5%;
 }
 
-.main-component[layout-style=basic] .contact-component {
+.main-component .contact-component {
   display: grid;
   grid-gap: 1em;
+  align-content: flex-start;
   padding: 5%;
 }
 
@@ -91,13 +92,13 @@ body {
   font-size: 1.8em;
 }
 
-.main-component[layout-style=basic] .component-section {
+.main-component .component-section {
   display: grid;
   grid-gap: 1em;
   align-content: flex-start;
 }
 
-.main-component[layout-style=basic] .skill-section {
+.main-component .skill-section {
   grid-template-columns: repeat(auto-fill, 300px);
 }
 
@@ -106,7 +107,7 @@ body {
   cursor: pointer;
 }
 
-.main-component[layout-style=basic] .contact-links {
+.main-component .contact-links {
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
 }

@@ -1,32 +1,40 @@
-import { initShadowRoot, initAttributes } from '../functions.js'
+import { initShadowRoot } from '../functions.js'
 
 customElements.define('button-radio',
   class ButtonRadio extends HTMLElement {
     constructor() {
       super();
-      initAttributes(this);
       initShadowRoot(this, 'ButtonRadio.css');
       this.shadowRoot.appendChild(document.createElement('span'))
+      this.initAttributes();
     }
 
     static get observedAttributes() {
-      return ['theme-color', 'layout-style', 'selected-value', 'is-selected'];
+      return ['target-type', 'theme-color', 'layout-style', 'selected-value', 'is-selected'];
     }
 
     attributeChangedCallback(name, oldVal, newVal) {
-      switch(name) {
+      if (name === this.getAttribute('target-type')) {
+        this.setIsSelected(newVal);
+      }
+    }
+
+    setIsSelected(val) {
+      if (val === this.getAttribute('selected-value')) {
+        this.setAttribute('is-selected', '');
+      } else {
+        this.removeAttribute('is-selected');
+      }
+    }
+
+    initAttributes() { // store initial states somewhere
+      switch (this.getAttribute('target-type')) {
         case 'theme-color':
-          if (newVal === this.getAttribute('selected-value')) {
-            this.setAttribute('is-selected', '');
-          } else {
-            this.removeAttribute('is-selected');
-          }
-          case 'layout-style':
-            if (newVal === this.getAttribute('selected-value')) {
-              this.setAttribute('is-selected', '');
-            } else {
-              this.removeAttribute('is-selected');
-            }
+          this.setAttribute('theme-color', 'light');
+          break;
+        case 'layout-style':
+          this.setAttribute('layout-style', 'basic');
+          break;
       }
     }
   }

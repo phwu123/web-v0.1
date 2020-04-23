@@ -1,7 +1,10 @@
-import { initAttributes } from '../functions.js';
+import { initLayout } from '../functions.js';
 
 const MainComponentTemplate = `
-  <navigation-component class="navigation-component"></navigation-component>
+  <section class="navigation-component">
+    <navigation-component></navigation-component>
+    <options-component></options-component>
+  </section>
   <main id="content-holder" class="content-holder">
     <skills-component id="component-skills" class="content-component"></skills-component>
     <experience-component id="component-experience" class="content-component"></experience-component>
@@ -12,12 +15,12 @@ customElements.define('main-component',
   class MainComponent extends HTMLElement {
     constructor() {
       super();
-      initAttributes(this);
+      initLayout(this);
       this.innerHTML = MainComponentTemplate;
     }
 
     static get observedAttributes() {
-      return ['layout-style', 'theme-color']
+      return ['layout-style']
     }
 
     get layoutStyle() {
@@ -26,14 +29,6 @@ customElements.define('main-component',
 
     set layoutStyle(val) {
       this.setAttribute('layout-style', val)
-    }
-
-    get themeColor() {
-      return this.getAttribute('theme-color');
-    }
-
-    set themeColor(val) {
-      this.setAttribute('theme-color', val)
     }
 
     connectedCallback() {
