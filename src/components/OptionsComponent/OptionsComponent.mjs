@@ -26,7 +26,6 @@ customElements.define('options-component',
   class OptionsComponent extends HTMLElement {
     constructor() {
       super();
-      initAttributes(this);
       this.innerHTML = OptionsComponentTemplateBasic;
       this.optionsToggle = document.getElementById('options-toggle')
       this.dropdownBox = document.getElementById('options-dropdown-box')
@@ -34,10 +33,6 @@ customElements.define('options-component',
 
     connectedCallback() {
       this.optionsToggle.addEventListener('click', this.toggleOptionsDropdown, false);
-    }
-    
-    static get observedAttributes() {
-      return ['layout-style', 'theme-color'];
     }
 
     toggleOptionsDropdown() {

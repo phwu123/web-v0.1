@@ -1,4 +1,4 @@
-import { initAttributes, initBasicModule } from '../functions.js'
+import { initAttributes, initShadowRoot } from '../functions.js'
 
 const template = `
   <span class="options-row" effect-hover effect-click>
@@ -13,7 +13,7 @@ customElements.define('options-module',
     constructor() {
       super();
       initAttributes(this);
-      initBasicModule(this, 'OptionsModule.css', template);
+      initShadowRoot(this, 'OptionsModule.css', template);
       this.dropdownBox = this.shadowRoot.children[3]
       this.toggleOptionDropdown = this.toggleOptionDropdown.bind(this);
       this.shadowRoot.children[2].addEventListener('click', this.toggleOptionDropdown)

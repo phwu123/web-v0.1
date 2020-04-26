@@ -1,4 +1,4 @@
-import { initLayout } from '../../functions.js';
+import { initTheme } from '../../functions.js';
 
 const ContactComponentBasicTemplate = `
   <header class="component-header">Contact</header>
@@ -19,26 +19,25 @@ customElements.define('contact-component',
   class ContactComponent extends HTMLElement {
     constructor() {
       super();
-      initLayout(this);
       this.innerHTML = ContactComponentBasicTemplate
     }
 
     connectedCallback() {
-      this.githubImage = this.getGithubImage
+      initTheme(this);
       this.linkedinImage = this.getLinkedinImage
       this.emailImage = this.getEmailImage
     }
 
     static get observedAttributes() {
-      return ['layout-style'];
+      return ['theme-color'];
     }
 
-    get layoutStyle() {
-      return this.getAttribute('layout-style')
-    }
-
-    set layoutStyle(val) {
-      this.setAttribute('layout-style', val)
+    attributeChangedCallback(name) {
+      switch (name) {
+        case 'theme-color':
+          this.githubImage = this.getGithubImage();
+          break;
+      }
     }
 
     get githubImage() {
@@ -49,8 +48,8 @@ customElements.define('contact-component',
       document.getElementById('github-image').src = val
     }
 
-    get getGithubImage() {
-      switch (this.themeColor) {
+    getGithubImage() {
+      switch (this.getAttribute('theme-color')) {
         case 'dark':
           return 'src/images/GitHub-Mark-Light-64px.png'
         case 'light':

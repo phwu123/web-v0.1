@@ -1,4 +1,4 @@
-import { initLayout } from '../functions.js';
+import { initLayout, setThemeColor } from '../functions.js';
 
 const MainComponentTemplate = `
   <section class="navigation-component">
@@ -17,6 +17,7 @@ customElements.define('main-component',
     constructor() {
       super();
       initLayout(this);
+      setThemeColor();
       this.innerHTML = MainComponentTemplate;
     }
 

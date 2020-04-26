@@ -1,11 +1,13 @@
+import { setThemeColor } from '../../../functions.js';
+
 const template = `
   <span class="button-row" effect-hover effect-click>
     <label>Light</label>
-    <button-radio target-type="theme-color" selected-value="light" is-selected></button-radio>
+    <button-radio target-type="theme-color" selected-value="light"></button-radio>
   </span>
   <span class="button-row" effect-hover effect-click>
     <label>Dark</label>
-    <button-radio target-type="theme-color" selected-value="dark" ></button-radio>
+    <button-radio target-type="theme-color" selected-value="dark"></button-radio>
   </span>
 `
 
@@ -13,7 +15,7 @@ customElements.define('options-themes',
   class OptionsThemes extends customElements.get('options-module') {
     constructor() {
       super();
-      this.appendChild(document.createTextNode(this.themeColor))
+      this.appendChild(document.createTextNode(this.getAttribute('theme-color')));
       this.shadowRoot.children[3].innerHTML += template;
       [...this.shadowRoot.children[3].children].forEach(child => child.addEventListener('click', this.setThemeColor, false));
     }
@@ -24,8 +26,8 @@ customElements.define('options-themes',
       if (theme !== OptionsThemes.getAttribute('theme-color')) {
         OptionsThemes.setAttribute('theme-color', theme);
         [...this.parentNode.children].forEach(child => child.children[1].setAttribute('theme-color', theme))
-        const colors = ['-color-main-bg', '-color-font', '-color-font-sub', '-color-highlight-hover', '-color-button'];
-        colors.forEach(color => document.styleSheets[1].cssRules[0].style.setProperty(`-${color}`, `var(--${theme}${color})`));
+        setThemeColor(theme);
+        document.getElementById('component-contact').setAttribute('theme-color', theme)
         OptionsThemes.textContent = theme;
       }
     }

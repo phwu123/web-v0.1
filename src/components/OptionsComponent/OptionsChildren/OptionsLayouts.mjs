@@ -13,7 +13,7 @@ customElements.define('options-layouts',
   class OptionsLayouts extends customElements.get('options-module') {
     constructor() {
       super();
-      this.appendChild(document.createTextNode(this.layoutStyle))
+      this.appendChild(document.createTextNode(this.getAttribute('layout-style')));
       this.setLayoutStyleText = this.setLayoutStyleText.bind(this);
       this.shadowRoot.children[3].innerHTML += template;
       [...this.shadowRoot.children[3].children].forEach(child => child.addEventListener('click', this.setLayoutStyleText, false))

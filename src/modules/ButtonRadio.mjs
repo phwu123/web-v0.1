@@ -1,4 +1,4 @@
-import { initShadowRoot } from '../functions.js'
+import { initShadowRoot, initTheme, initLayout } from '../functions.js'
 
 customElements.define('button-radio',
   class ButtonRadio extends HTMLElement {
@@ -30,10 +30,10 @@ customElements.define('button-radio',
     initAttributes() { // store initial states somewhere
       switch (this.getAttribute('target-type')) {
         case 'theme-color':
-          this.setAttribute('theme-color', 'light');
+          initTheme(this);
           break;
         case 'layout-style':
-          this.setAttribute('layout-style', 'basic');
+          initLayout(this);
           break;
       }
     }

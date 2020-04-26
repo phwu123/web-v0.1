@@ -80,8 +80,8 @@ body {
 
 .main-component .content-component {
   display: grid;
-  align-content: flex-start;
   grid-gap: 1em;
+  align-content: flex-start;
   min-height: 100%;
   padding: 5%;
 }
@@ -89,7 +89,7 @@ body {
 .main-component .contact-component {
   display: grid;
   grid-gap: 1em;
-  align-content: flex-start;
+  align-content: center;
   padding: 5%;
 }
 

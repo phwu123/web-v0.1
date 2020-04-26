@@ -1,4 +1,4 @@
-import { initBasicModule, initLayout } from '../functions.js'
+import { initShadowRoot } from '../functions.js'
 
 const template = `
   <slot name="exp-name"><a>Experience Title</a></slot>
@@ -23,20 +23,7 @@ customElements.define('experience-module',
   class ExperienceModule extends HTMLElement {
     constructor() {
       super();
-      initLayout(this);
-      initBasicModule(this, 'ExperienceModule.css', template);
-    }
-
-    static get observedAttributes() {
-      return ['layout-style'];
-    }
-
-    get layoutStyle() {
-      return this.getAttribute('layout-style')
-    }
-
-    set layoutStyle(val) {
-      this.setAttribute('layout-style', val)
+      initShadowRoot(this, 'ExperienceModule.css', template);
     }
   }
 )
