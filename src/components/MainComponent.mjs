@@ -1,4 +1,4 @@
-import { initLayout, setThemeColor } from '../functions.js';
+import { initLayout, setThemeColor } from '../Functions.js';
 
 const MainComponentTemplate = `
   <section class="navigation-component">

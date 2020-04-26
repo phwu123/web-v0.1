@@ -1,4 +1,4 @@
-import { initShadowRoot, initTheme, initLayout } from '../functions.js'
+import { initShadowRoot, initTheme, initLayout } from '../Functions.js'
 
 customElements.define('button-radio',
   class ButtonRadio extends HTMLElement {

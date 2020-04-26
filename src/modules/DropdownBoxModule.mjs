@@ -1,4 +1,4 @@
-import { initShadowRoot } from '../functions.js'
+import { initShadowRoot } from '../Functions.js'
 
 customElements.define('dropdown-box-module',
   class DropdownBoxModule extends HTMLElement {

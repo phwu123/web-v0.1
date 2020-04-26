@@ -1,4 +1,4 @@
-import { setThemeColor } from '../../../functions.js';
+import { setThemeColor } from '../../../Functions.js';
 
 const template = `
   <span class="button-row" effect-hover effect-click>

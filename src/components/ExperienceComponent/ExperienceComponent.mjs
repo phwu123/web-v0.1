@@ -1,4 +1,4 @@
-import { initLayout } from '../../functions.js';
+import { initLayout } from '../../Functions.js';
 
 const ExperienceComponentBasicTemplate = `
   <header class="component-header">Experience</header>

@@ -1,4 +1,4 @@
-import { initTheme } from '../../functions.js';
+import { initTheme } from '../../Functions.js';
 
 const ContactComponentBasicTemplate = `
   <header class="component-header">Contact</header>

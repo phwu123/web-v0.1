@@ -1,5 +1,3 @@
-import { initAttributes } from '../../functions.js';
-
 const OptionsComponentTemplateBasic = `
   <header id="options-toggle" class="navigation-item" effect-hover effect-click>Options</header>
   <dropdown-box-module id="options-dropdown-box">

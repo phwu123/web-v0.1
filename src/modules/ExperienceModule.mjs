@@ -1,4 +1,4 @@
-import { initShadowRoot } from '../functions.js'
+import { initShadowRoot } from '../Functions.js'
 
 const template = `
   <slot name="exp-name"><a>Experience Title</a></slot>

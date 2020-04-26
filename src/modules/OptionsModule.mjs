@@ -1,4 +1,4 @@
-import { initAttributes, initShadowRoot } from '../functions.js'
+import { initAttributes, initShadowRoot } from '../Functions.js'
 
 const template = `
   <span class="options-row" effect-hover effect-click>
