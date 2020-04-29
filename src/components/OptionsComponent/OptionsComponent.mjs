@@ -1,4 +1,6 @@
-const OptionsComponentTemplateBasic = `
+import { initShadowRoot} from '../../Functions.js';
+
+const template = `
   <header id="options-toggle" class="navigation-item" effect-hover effect-click>Options</header>
   <dropdown-box-module id="options-dropdown-box">
     <options-themes id="options-themes"></options-themes>
@@ -24,13 +26,13 @@ customElements.define('options-component',
   class OptionsComponent extends HTMLElement {
     constructor() {
       super();
-      this.innerHTML = OptionsComponentTemplateBasic;
-      this.optionsToggle = document.getElementById('options-toggle')
-      this.dropdownBox = document.getElementById('options-dropdown-box')
+      initShadowRoot(this, 'OptionsComponent.css');
+      this.shadowRoot.appendChild(document.createElement('slot'));
+      this.innerHTML = template;
     }
 
     connectedCallback() {
-      this.optionsToggle.addEventListener('click', this.toggleOptionsDropdown, false);
+      document.getElementById('options-toggle').addEventListener('click', this.toggleOptionsDropdown, false);
     }
 
     toggleOptionsDropdown() {

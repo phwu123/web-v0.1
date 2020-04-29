@@ -32,7 +32,9 @@ export function initLayout(node) {
 export function initShadowRoot(node, cssName, template) {
   node.attachShadow({mode: 'open'});
   node.shadowRoot.appendChild(createBaseCss());
-  node.shadowRoot.appendChild(createCssLink(cssName));
+  if (cssName) {
+    node.shadowRoot.appendChild(createCssLink(cssName));
+  }
   if (template) {
     node.shadowRoot.innerHTML += template;
   }
@@ -40,5 +42,5 @@ export function initShadowRoot(node, cssName, template) {
 
 export function setThemeColor(themeColor=themeColorDefault) {
   const colors = ['-color-main-bg', '-color-font', '-color-font-sub', '-color-highlight-hover', '-color-button'];
-  colors.forEach(color => document.styleSheets[1].cssRules[0].style.setProperty(`-${color}`, `var(--${themeColor}${color})`));
+  colors.forEach(color => document.styleSheets[1].cssRules[0]. style.setProperty(`-${color}`, `var(--${themeColor}${color})`));
 }

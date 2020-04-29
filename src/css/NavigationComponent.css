@@ -1,0 +1,7 @@
+@media (max-width: 600px) {
+  :host {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: space-around;
+  }
+}
