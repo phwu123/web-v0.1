@@ -6,7 +6,8 @@ customElements.define('dropdown-box-module',
       super();
       initShadowRoot(this, 'DropdownBoxModule.css');
       this.animationDuration = 500;
-      this.isClosing = false;
+      this.isAnimating = false;
+      this.timeoutId = undefined;
     }
 
     connectedCallback() {
@@ -35,22 +36,36 @@ customElements.define('dropdown-box-module',
 
     toggleDropdown() {
       if (this.dropdownOpen) {
-        this.style.height = this.contentHeight + 'px'
-        setTimeout(() => {
-          if (!this.isClosing) {
-            this.style.height = 'unset';
-          }
-        }, this.animationDuration);
+        this.toggleOpen();
       } else {
-        this.isClosing = true
-        this.style.height = this.contentHeight + 'px'
-        setTimeout(() => {
-          this.style.height = 0;
-        }, 10); // needs delay to work correctly?
-        setTimeout(() => {
-          this.isClosing = false;
-        }, this.animationDuration);
+        this.toggleClose();
       }
+    }
+
+    toggleOpen() {
+      if (this.isAnimating) {
+        clearTimeout(this.timeoutId);
+      }
+      this.isAnimating = true;
+      this.style.height = this.contentHeight + 'px';
+      this.timeoutId = setTimeout(() => {
+        this.style.height = 'unset';
+        this.isAnimating = false;
+      }, this.animationDuration);
+    }
+
+    toggleClose() {
+      if (this.isAnimating) {
+        clearTimeout(this.timeoutId);
+      };
+      this.isAnimating = true;
+      this.style.height = this.contentHeight + 'px';
+      setTimeout(() => {
+        this.style.height = 0;
+      }, 10); // needs a delay to work correctly?
+      this.timeoutId = setTimeout(() => {
+        this.isAnimating = false;
+      }, this.animationDuration);
     }
   }
 )
