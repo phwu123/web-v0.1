@@ -1,3 +1,22 @@
-:slotted(.navigation-item) {
-  
+:host {
+  display: flex;
+}
+
+@media (min-width: 601px) {
+  :host {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 600px) {
+  :host {
+    position: absolute;
+    flex-direction: column;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    right: 5%;
+    bottom: 70px;
+    border: var(--border-style);
+  }
 }
