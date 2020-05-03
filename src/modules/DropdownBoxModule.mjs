@@ -15,7 +15,7 @@ customElements.define('dropdown-box-module',
     }
 
     static get observedAttributes() {
-      return ['dropdown-open'];
+      return ['dropdown-open', 'show-styles'];
     }
 
     attributeChangedCallback(name, oldVal, newVal) {
@@ -46,6 +46,7 @@ customElements.define('dropdown-box-module',
       if (this.isAnimating) {
         clearTimeout(this.timeoutId);
       }
+      this.setAttribute('show-styles', '');
       this.isAnimating = true;
       this.style.height = this.contentHeight + 'px';
       this.timeoutId = setTimeout(() => {
@@ -65,6 +66,7 @@ customElements.define('dropdown-box-module',
       }, 10); // needs a delay to work correctly?
       this.timeoutId = setTimeout(() => {
         this.isAnimating = false;
+        this.removeAttribute('show-styles')
       }, this.animationDuration);
     }
   }

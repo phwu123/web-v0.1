@@ -4,3 +4,8 @@
   height: 0;
   display: grid;
 }
+
+:host(:not([show-styles])) {
+  border-width: 0 !important;
+  box-shadow: none !important;
+}

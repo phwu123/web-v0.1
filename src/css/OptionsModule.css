@@ -2,7 +2,6 @@
   font-size: 0.8em;
   transition: transform var(--animation-duration);
   margin-left: 0.75em;
-  position: relative;
 }
 
 :host .options-row {

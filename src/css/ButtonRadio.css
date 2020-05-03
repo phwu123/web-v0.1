@@ -12,7 +12,7 @@
   width: 80%;
   height: 80%;
   border-radius: 50%;
-  background-color: var(--color-button);
+  background-color: var(--color-border);
   opacity: 0;
   transition: opacity var(--animation-duration);
 }

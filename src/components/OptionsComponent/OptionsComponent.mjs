@@ -27,6 +27,7 @@ customElements.define('options-component',
     constructor() {
       super();
       this.handleWindowResize = this.handleWindowResize.bind(this);
+      this.closeMenuMobile = this.closeMenuMobile.bind(this);
       initShadowRoot(this, 'OptionsComponent.css');
       this.shadowRoot.appendChild(document.createElement('slot'));
       this.innerHTML = template;
@@ -38,6 +39,7 @@ customElements.define('options-component',
     connectedCallback() {
       document.getElementById('options-toggle').addEventListener('click', this.toggleOptionsDropdown, false);
       window.addEventListener('resize', this.handleWindowResize, false)
+      this.handleWindowResize()
     }
 
     toggleOptionsDropdown() {
@@ -47,8 +49,10 @@ customElements.define('options-component',
     handleWindowResize() {
       if (window.innerWidth > 600) {
         this.setText();
+        window.removeEventListener('click', this.closeMenuMobile, true);
       } else {
         this.setMenu();
+        window.addEventListener('click', this.closeMenuMobile, true);
       }
     }
 
@@ -58,6 +62,13 @@ customElements.define('options-component',
 
     setMenu() {
       this.children[0].textContent = '';
+    }
+
+    closeMenuMobile(e) {
+      console.log('close', e.target.id)
+      if (e.target.id !== 'options-toggle') {
+        document.getElementById('options-dropdown-box').removeAttribute('dropdown-open');
+      }
     }
   }
 )

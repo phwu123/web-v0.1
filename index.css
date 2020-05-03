@@ -1,25 +1,27 @@
 :root {
   --font-size: 10px;
   --animation-duration: 0.5s;
-  --border-style: 1px solid var(--color-button);
+  --border-style: 1px solid var(--color-border);
+  --border-radius: 4px;
+  --box-shadow: 2px 2px 1px 1px var(--color-border);
 
   --color-main-bg: var(--light-color-main-bg);
   --color-font: var(--light-color-font);
   --color-font-sub: var(--light-color-font-sub);
   --color-highlight-hover: var(--light-color-highlight-hover);
-  --color-button: var(--light-color-button);
+  --color-border: var(--light-color-border);
 
   --light-color-main-bg: #888;
   --light-color-font: #111;
   --light-color-font-sub: #555;
   --light-color-highlight-hover: #0bf;
-  --light-color-button: #555;
+  --light-color-border: #555;
 
   --dark-color-main-bg: black;
   --dark-color-font: white;
   --dark-color-font-sub: grey;
   --dark-color-highlight-hover: red;
-  --dark-color-button: white;
+  --dark-color-border: white;
 }
 
 body {
@@ -173,4 +175,10 @@ body {
 .main-component .contact-links {
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
+}
+
+@media (max-width: 600px) {
+  .main-component .contact-links {
+    margin-right: 50px;
+  }
 }
