@@ -14,12 +14,29 @@ customElements.define('navigation-component',
       this.navigateToPage = this.navigateToPage.bind(this)
       this.innerHTML = template;
       [...this.children].forEach(child => child.addEventListener('click', this.navigateToPage, false))
-      this.contentHolder = document.getElementById('content-holder')
+      this.contentHolder = document.getElementById('content-holder');
+    }
+
+    static get observedAttributes() {
+      return ['layout-style'];
     }
 
     navigateToPage(e) {
-      const target = document.getElementById(`component-${e.target.id.slice(11)}`)
-      this.contentHolder.scroll({top: target.offsetTop - this.contentHolder.offsetTop, left: target.offsetLeft - this.contentHolder.offsetLeft, behavior: 'smooth'})
+      const target = document.getElementById(`component-${e.target.id.slice(11)}`);
+      if (this.getAttribute('layout-style') === 'book') {
+        this.navigateFlip(target);
+      } else {
+        this.navigateScroll(target);
+      }
+      
+    }
+
+    navigateScroll(target) {
+      this.contentHolder.scroll({top: target.offsetTop - this.contentHolder.offsetTop, left: target.offsetLeft - this.contentHolder.offsetLeft, behavior: 'smooth'});
+    }
+
+    navigateFlip(target) {
+
     }
   }
 )

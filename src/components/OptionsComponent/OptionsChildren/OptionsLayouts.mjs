@@ -7,6 +7,10 @@ const template = `
     <label>Gallery</label>
     <button-radio target-type="layout-style" selected-value="gallery"></button-radio>
   </span>
+  <span class="button-row" effect-hover effect-click>
+    <label>Book</label>
+    <button-radio target-type="layout-style" selected-value="book"></button-radio>
+  </span>
 `
 
 customElements.define('options-layouts',

@@ -1,7 +1,12 @@
 :host {
   font-size: 0.8em;
   transition: transform var(--animation-duration);
-  margin-left: 0.75em;
+}
+
+@media (max-width: 600px) {
+  :host {
+    margin-left: 0.75em;
+  }
 }
 
 :host .options-row {

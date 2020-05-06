@@ -4,5 +4,6 @@
     grid-template-columns: repeat(3, auto
     );
     justify-content: space-around;
+    border-top: var(--border-style);
   }
 }

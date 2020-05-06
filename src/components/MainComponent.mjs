@@ -1,7 +1,7 @@
 import { initLayout, setThemeColor } from '../Functions.js';
 
-const MainComponentTemplate = `
-  <section class="navigation-component">
+const template = `
+  <section class="menu-component">
     <navigation-component></navigation-component>
     <options-component></options-component>
   </section>
@@ -18,7 +18,7 @@ customElements.define('main-component',
       super();
       initLayout(this);
       setThemeColor();
-      this.innerHTML = MainComponentTemplate;
+      this.innerHTML = template;
     }
 
     static get observedAttributes() {
