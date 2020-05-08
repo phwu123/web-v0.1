@@ -17,7 +17,7 @@ time, mark, audio, video {
 }
 
 [effect-hover]:hover {
-  transition: background-color 0.5s;
+  transition: background-color var(--animation-duration);
   background-color: var(--color-highlight-hover);
   border-radius: 0.5em;
 }

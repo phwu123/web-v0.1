@@ -1,3 +1,9 @@
+@media (min-width: 601px) {
+  :host .menu-button {
+    padding: 0.5em;
+  }
+}
+
 @media (max-width: 600px) {
   :host {
     display: flex;

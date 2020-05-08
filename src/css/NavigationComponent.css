@@ -1,3 +1,8 @@
+:host {
+  position: relative;
+}
+
+
 @media (max-width: 600px) {
   :host {
     display: grid;
@@ -5,5 +10,33 @@
     );
     justify-content: space-around;
     border-top: var(--border-style);
+  }
+}
+
+:host ::slotted(.navigation-marker) {
+  position: absolute;
+  transition: transform var(--animation-duration) ease-out;
+}
+
+@media (min-width: 601px) {
+  :host ::slotted(.navigation-marker) {
+    top: 0.8em;
+    right: 0.2em;
+    margin: 0.5em 0.2em;
+    border-top: 0.2em solid transparent;
+    border-right: 0.5em solid var(--color-font);
+    border-bottom: 0.2em solid transparent;
+  }
+
+  :host ::slotted(.marker-skills) {
+    transform: translate3d(0, 0, 0);
+  }
+
+  :host ::slotted(.marker-experience) {
+    transform: translate3d(0, 2.3em, 0);
+  }
+
+  :host ::slotted(.marker-contact) {
+    transform: translate3d(0, 4.4em, 0);
   }
 }
