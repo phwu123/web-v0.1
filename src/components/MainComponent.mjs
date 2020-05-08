@@ -17,7 +17,8 @@ customElements.define('main-component',
     constructor() {
       super();
       this.contentScroll = this.contentScroll.bind(this);
-      this.changeLayout = this.changeLayout.bind(this)
+      this.changeLayout = this.changeLayout.bind(this);
+      this.handleWindowResize = this.handleWindowResize.bind(this);
       initLayout(this);
       setThemeColor();
       this.innerHTML = template;
@@ -40,14 +41,15 @@ customElements.define('main-component',
       setTimeout(() => {
         document.getElementById('main').classList.add('opacity-1');
       }, 200);
-      this.addEventListener('change-layout', this.changeLayout);
+      this.addEventListener('change-layout', this.changeLayout, false);
+      this.addEventListener('window-resize', this.handleWindowResize, false);
       this.contentHolder.addEventListener('scroll', this.contentScroll, false);
       setTimeout(() => {
         this.skillsScroll = this.getScrollCoords(this.contentHolder.children[0]);
         this.experienceScroll = this.getScrollCoords(this.contentHolder.children[1]);
         this.contactScroll = this.getScrollCoords(this.contentHolder.children[2]);
         this.setMarkerBrightness();
-        this.contentScrollBasic(this.contentHolder.scrollTop);
+        // this.contentScrollBasic(this.contentHolder.scrollTop);
       }, 500); // temp
     }
 
@@ -68,6 +70,10 @@ customElements.define('main-component',
       this.contentHolder.scroll({top: 0, left: 0});
       this.setAttribute('layout-style', e.detail);
       this.previousScrollPosition = 0;
+    }
+
+    handleWindowResize() {
+      this.contentScrollBasic(this.contentHolder.scrollTop);
     }
 
     contentScroll(e) {

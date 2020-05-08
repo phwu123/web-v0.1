@@ -86,6 +86,12 @@ body {
   padding: 0.5em;
 }
 
+@media (max-width: 600px) {
+  .navigation-item {
+    justify-self: center;
+  }
+}
+
 .content-holder {
   overflow-y: auto;
   position: relative;

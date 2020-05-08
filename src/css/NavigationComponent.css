@@ -6,9 +6,8 @@
 @media (max-width: 600px) {
   :host {
     display: grid;
-    grid-template-columns: repeat(3, auto
+    grid-template-columns: repeat(3, 1fr
     );
-    justify-content: space-around;
     border-top: var(--border-style);
   }
 }
@@ -38,5 +37,27 @@
 
   :host ::slotted(.marker-contact) {
     transform: translate3d(0, 4.4em, 0);
+  }
+}
+
+@media (max-width: 600px) {
+  :host ::slotted(.navigation-marker) {
+    left: 0;
+    bottom: 0.2em;
+    background-color: var(--color-font);
+    height: 0.2em;
+    width: 5em;
+  }
+
+  :host ::slotted(.marker-skills) {
+    transform: translate3d(calc(32vw - 5em), 0, 0) scale3d(0.6, 1, 1);
+  }
+
+  :host ::slotted(.marker-experience) {
+    transform: translate3d(calc(65vw - 5em), 0, 0) scale3d(1, 1, 1);
+  }
+
+  :host ::slotted(.marker-contact) {
+    transform: translate3d(calc(99vw - 5em), 0, 0) scale3d(0.7, 1, 1);
   }
 }

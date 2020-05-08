@@ -13,7 +13,9 @@ customElements.define('options-button',
 
     connectedCallback() {
       window.addEventListener('resize', this.handleWindowResize, false);
-      this.handleWindowResize();
+      setTimeout(() => {
+        this.handleWindowResize();
+      }, 500);
     }
 
     bindFunctions() {
@@ -23,11 +25,16 @@ customElements.define('options-button',
     }
 
     handleWindowResize() {
+      this.dispatchEvent(this.windowResizeEvent());
       if (window.innerWidth > 600) {
         this.setDesktopMode();
       } else {
         this.setMobileMode();
       }
+    }
+
+    windowResizeEvent() {
+      return new CustomEvent('window-resize', { bubbles: true })
     }
 
     setDesktopMode() {
