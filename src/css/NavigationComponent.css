@@ -15,7 +15,7 @@
 
 :host ::slotted(.navigation-marker) {
   position: absolute;
-  transition: transform var(--animation-duration) ease-in;
+  transition: transform calc(var(--animation-duration) / 2) ease-in;
 }
 
 @media (min-width: 601px) {

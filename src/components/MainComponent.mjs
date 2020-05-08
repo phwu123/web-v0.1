@@ -29,6 +29,7 @@ customElements.define('main-component',
       this.markerBrightness = null;
       this.marker = null;
       this.markerPosition = null;
+      this.scrollDebouncer = false;
     }
 
     static get observedAttributes() {
@@ -56,8 +57,8 @@ customElements.define('main-component',
         { filter: 'brightness(10%)' },
         { filter: 'brightness(100%)' }
       ];
-      const duration = parseInt(document.styleSheets[1].cssRules[0].style.getPropertyValue('--animation-duration'), 10);
-      const markerBrightnessTiming = { duration };
+      const duration = parseInt(document.styleSheets[1].cssRules[0].style.getPropertyValue('--animation-duration'), 10) / 2;
+      const markerBrightnessTiming = { duration, easing: 'ease-in' };
       this.marker = this.children[0].children[0].lastElementChild;
       this.markerBrightness = this.marker.animate(markerBrightnessKeyframes, markerBrightnessTiming);
       this.markerBrightness.pause();
@@ -70,9 +71,13 @@ customElements.define('main-component',
     }
 
     contentScroll(e) {
-      if (!this.skillsScroll) {
+      if (!this.skillsScroll || this.scrollDebouncer) {
         return;
       }
+      this.scrollDebouncer = true
+      setTimeout(() => {
+        this.scrollDebouncer = false
+      }, 100);
       switch (this.getAttribute('layout-style')) {
         case 'basic':
           this.contentScrollBasic(e.target.scrollTop);
@@ -102,26 +107,22 @@ customElements.define('main-component',
       const skillAndScrollingUp = scrollPosition < skillExperienceBoundary && this.previousScrollPosition > scrollPosition
 
       if (contactAndScrollingDown) {
-        if (this.markerPosition !== 'contact') {
-          this.moveNavigationMarker('contact');
-        }
+        this.moveNavigationMarker('contact');
       } else if (experienceAndScrollingDown || experienceAndScrollingUp) {
-        if (this.markerPosition !== 'experience') {
-          this.moveNavigationMarker('experience');
-        }
+        this.moveNavigationMarker('experience');
       } else if (scrollPosition < this.experienceScroll.top || skillAndScrollingUp) {
-        if (this.markerPosition !== 'skills') {
-          this.moveNavigationMarker('skills');
-        }
+        this.moveNavigationMarker('skills');
       }
       this.previousScrollPosition = scrollPosition;
     }
 
     moveNavigationMarker(name) {
-      this.markerPosition = name;
-      this.marker.classList.remove(this.marker.classList[1]);
-      this.marker.classList.add(`marker-${name}`);
-      this.markerBrightness.play();
+      if (this.markerPosition !== name) {
+        this.markerPosition = name;
+        this.marker.classList.remove(this.marker.classList[1]);
+        this.marker.classList.add(`marker-${name}`);
+        this.markerBrightness.play();
+      }
     }
   }
 )
