@@ -1,6 +1,7 @@
 import { initLayout, setThemeColor } from '../Functions.js';
 
 const template = `
+  <screen-component class="screen-component"></screen-component>
   <section class="menu-component">
     <navigation-component></navigation-component>
     <options-component></options-component>
@@ -49,7 +50,6 @@ customElements.define('main-component',
         this.experienceScroll = this.getScrollCoords(this.contentHolder.children[1]);
         this.contactScroll = this.getScrollCoords(this.contentHolder.children[2]);
         this.setMarkerBrightness();
-        // this.contentScrollBasic(this.contentHolder.scrollTop);
       }, 500); // temp
     }
 
@@ -61,7 +61,7 @@ customElements.define('main-component',
       ];
       const duration = parseInt(document.styleSheets[1].cssRules[0].style.getPropertyValue('--animation-duration'), 10) / 2;
       const markerBrightnessTiming = { duration, easing: 'ease-in' };
-      this.marker = this.children[0].children[0].lastElementChild;
+      this.marker = this.children[1].children[0].lastElementChild;
       this.markerBrightness = this.marker.animate(markerBrightnessKeyframes, markerBrightnessTiming);
       this.markerBrightness.pause();
     }
@@ -108,7 +108,7 @@ customElements.define('main-component',
       const skillExperienceBoundary = this.experienceScroll.top - 0.4 * this.skillsScroll.height
 
       const contactAndScrollingDown = scrollPosition >= contactScrollTop && this.previousScrollPosition < scrollPosition
-      const experienceAndScrollingDown = scrollPosition >= this.experienceScroll.top - 0.2 * this.skillsScroll.height && this.previousScrollPosition < scrollPosition
+      const experienceAndScrollingDown = scrollPosition >= skillExperienceBoundary && this.previousScrollPosition < scrollPosition
       const experienceAndScrollingUp = scrollPosition > skillExperienceBoundary && (scrollPosition <= contactScrollTop && this.previousScrollPosition > scrollPosition)
       const skillAndScrollingUp = scrollPosition < skillExperienceBoundary && this.previousScrollPosition > scrollPosition
 

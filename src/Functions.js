@@ -44,3 +44,7 @@ export function setThemeColor(themeColor=themeColorDefault) {
   const colors = ['-color-main-bg', '-color-font', '-color-font-sub', '-color-highlight-hover', '-color-border'];
   colors.forEach(color => document.styleSheets[1].cssRules[0]. style.setProperty(`-${color}`, `var(--${themeColor}${color})`));
 }
+
+export function getRandomValueBetween(min, max) {
+  return Math.random() * (max-min) + min;
+}

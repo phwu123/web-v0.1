@@ -1,0 +1,11 @@
+:host ::slotted(p::before) {
+  --animation: 0;
+  animation: var(--animation);
+}
+
+:host ::slotted(p) {
+  position: absolute;
+  color: red;
+  animation: rotate-object calc(var(--animation-duration) * 4) infinite ease-in-out;
+  width: max-content;
+}
