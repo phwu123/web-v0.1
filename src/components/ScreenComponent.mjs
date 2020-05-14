@@ -10,6 +10,8 @@ customElements.define('screen-component',
     connectedCallback() {
       this.shadowRoot.appendChild(document.createElement('slot'))
       this.appendChild(document.createElement('falling-x'))
+      this.appendChild(document.createElement('falling-x'))
+      this.appendChild(document.createElement('falling-x'))
     }
   }
 )

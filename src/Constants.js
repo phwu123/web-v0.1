@@ -6,3 +6,5 @@ export const offsetXStartMin = 70;
 export const offsetXStartMax = 120;
 export const offsetXEndDisplacementMin = -40;
 export const offsetXEndDisplacementMax = -90;
+export const durationMin = 2000;
+export const durationMax = 10000;

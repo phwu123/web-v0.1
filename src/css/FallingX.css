@@ -1,8 +1,3 @@
-:host ::slotted(p::before) {
-  --animation: 0;
-  animation: var(--animation);
-}
-
 :host ::slotted(p) {
   position: absolute;
   color: red;
