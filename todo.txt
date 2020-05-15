@@ -1,1 +1,2 @@
 1) refactor transition height to something else (transform) somehow?
+2) debouncer to implement force parameter (was causing problems)

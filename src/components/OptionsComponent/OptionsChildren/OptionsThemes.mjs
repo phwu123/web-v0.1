@@ -1,11 +1,11 @@
 import { setThemeColor } from '../../../Functions.js';
 
 const template = `
-  <span class="button-row" effect-hover effect-click>
+  <span class="option-row button-row" effect-hover effect-click>
     <label>Light</label>
     <button-radio target-type="theme-color" selected-value="light"></button-radio>
   </span>
-  <span class="button-row" effect-hover effect-click>
+  <span class="option-row button-row" effect-hover effect-click>
     <label>Dark</label>
     <button-radio target-type="theme-color" selected-value="dark"></button-radio>
   </span>

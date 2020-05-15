@@ -48,3 +48,13 @@ export function setThemeColor(themeColor=themeColorDefault) {
 export function getRandomValueBetween(min, max) {
   return Math.random() * (max-min) + min;
 }
+
+export function debounceFunction(fcn, e, timer, scope) {
+  if (!scope._debounce) {
+    scope._debounce = true;
+    setTimeout(() => {
+      scope._debounce = false;
+    }, timer);
+    fcn(e);
+  }
+}

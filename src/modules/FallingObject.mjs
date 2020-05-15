@@ -8,7 +8,7 @@ customElements.define('falling-object',
       // this.offsetYStart = -10;
       // this.offsetYEnd = 110;
       // this.offsetXStartMin = 70;
-      // this.offsetXStartMax = 120;
+      // this.offsetXStartMax = 110;
       // this.offsetXEndDisplacementMin = -90;
       // this.offsetXEndDisplacementMax = -40;
       // this.durationMin = 2000;

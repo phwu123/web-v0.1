@@ -5,6 +5,7 @@ const template = `
   <dropdown-box-module id="options-dropdown-box">
     <options-themes id="options-themes"></options-themes>
     <options-layouts id="options-layouts"></options-layouts>
+    <options-animations id="options-animations"></options-animations>
   </dropdown-box-module>
 `
 

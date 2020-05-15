@@ -1,4 +1,4 @@
-import { initLayout, setThemeColor } from '../Functions.js';
+import { initLayout, setThemeColor, debounceFunction } from '../Functions.js';
 
 const template = `
   <screen-component class="screen-component"></screen-component>
@@ -17,9 +17,7 @@ customElements.define('main-component',
   class MainComponent extends HTMLElement {
     constructor() {
       super();
-      this.contentScroll = this.contentScroll.bind(this);
-      this.changeLayout = this.changeLayout.bind(this);
-      this.handleWindowResize = this.handleWindowResize.bind(this);
+      this.bindFunctions();
       initLayout(this);
       setThemeColor();
       this.innerHTML = template;
@@ -44,6 +42,7 @@ customElements.define('main-component',
       }, 200);
       this.addEventListener('change-layout', this.changeLayout, false);
       this.addEventListener('window-resize', this.handleWindowResize, false);
+      window.addEventListener('mouseup', this.optionsAnimationsMouseUp, false);
       this.contentHolder.addEventListener('scroll', this.contentScroll, false);
       setTimeout(() => {
         this.skillsScroll = this.getScrollCoords(this.contentHolder.children[0]);
@@ -51,6 +50,14 @@ customElements.define('main-component',
         this.contactScroll = this.getScrollCoords(this.contentHolder.children[2]);
         this.setMarkerBrightness();
       }, 500); // temp
+    }
+
+    bindFunctions() {
+      this.contentScroll = this.contentScroll.bind(this);
+      this.changeLayout = this.changeLayout.bind(this);
+      this.handleWindowResize = this.handleWindowResize.bind(this);
+      this.scrollTo = this.scrollTo.bind(this);
+      this.optionsAnimationsMouseUp = this.optionsAnimationsMouseUp.bind(this);
     }
 
     setMarkerBrightness() {
@@ -77,13 +84,12 @@ customElements.define('main-component',
     }
 
     contentScroll(e) {
-      if (!this.skillsScroll || this.scrollDebouncer) {
-        return;
+      if (this.skillsScroll) {
+        debounceFunction(this.scrollTo, e, 100, this);
       }
-      this.scrollDebouncer = true
-      setTimeout(() => {
-        this.scrollDebouncer = false
-      }, 100);
+    }
+
+    scrollTo(e) {
       switch (this.getAttribute('layout-style')) {
         case 'basic':
           this.contentScrollBasic(e.target.scrollTop);
@@ -129,6 +135,10 @@ customElements.define('main-component',
         this.marker.classList.add(`marker-${name}`);
         this.markerBrightness.play();
       }
+    }
+
+    optionsAnimationsMouseUp() {
+      [...document.getElementById('options-animations').shadowRoot.children[3].children].forEach(child => child.children[1].setAttribute('mouse-up', ''));
     }
   }
 )

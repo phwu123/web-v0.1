@@ -29,12 +29,14 @@
   padding-left: 0.5em;
 }
 
-.button-row {
+.option-row {
   font-size: 0.8em;
+  padding: 0.5em;
+  margin: 0 0.5em;
+}
+
+.button-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5em;
-  margin: 0 0.5em;
-  cursor: pointer;
 }

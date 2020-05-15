@@ -1,13 +1,15 @@
-import { getRandomValueBetween, initShadowRoot } from '../../Functions.js';
+import { getRandomValueBetween } from '../../Functions.js';
 import { offsetYEnd, offsetYStart } from '../../Constants.js';
 
 customElements.define('falling-x',
   class FallingX extends customElements.get('falling-object') {
     constructor() {
       super();
-      initShadowRoot(this, 'FallingX.css');
+      this.attachShadow({ mode: 'open' })
       this.shadowRoot.appendChild(document.createElement('slot'));
       this.animationY = null;
+      this.self = null;
+      this.colors = ['blue', 'red', 'yellow'];
     }
 
     static get observedAttributes () {
@@ -20,15 +22,20 @@ customElements.define('falling-x',
           this.initSelf();
           break;
         case 'duration-change':
-          this.setAnimationPositionEndY(newVal)
+          this.setColor();
+          this.setAnimationPositionEndY(newVal);
           break;
       }
     }
 
     initSelf() {
-      const p = document.createElement('p');
-      p.textContent = 'X';
-      this.appendChild(p);
+      this.self = document.createElement('p');
+      this.self.textContent = 'X';
+      this.appendChild(this.self);
+    }
+
+    setColor() {
+      this.self.style.color = this.colors[Math.floor(getRandomValueBetween(0, 3))];
     }
 
     setAnimationPositionEndY(duration) {
@@ -42,7 +49,7 @@ customElements.define('falling-x',
         duration: Number(duration),
         easing: `cubic-bezier(${getRandomValueBetween(0, 0.7)}, ${getRandomValueBetween(0, 0,7)}, ${getRandomValueBetween(0.3, 1)}, ${getRandomValueBetween(0.3, 1)})`,
         direction: 'alternate',
-        iterations: Infinity,
+        iterations: Infinity
       }
       this.animationY = this.children[0].animate(translateY, translateYTiming);
     }

@@ -1,14 +1,14 @@
 const template = `
-  <span class="button-row" effect-hover effect-click>
+  <span class="option-row button-row" effect-hover effect-click>
     <label>Basic</label>
     <button-radio target-type="layout-style" selected-value="basic" is-selected></button-radio>
   </span>
-  <span class="button-row" effect-hover effect-click>
+  <span class="option-row button-row" effect-hover effect-click>
     <label>Gallery</label>
     <button-radio target-type="layout-style" selected-value="gallery"></button-radio>
   </span>
   `
-  // <span class="button-row" effect-hover effect-click>
+  // <span class="option-row button-row" effect-hover effect-click>
   //   <label>Book</label>
   //   <button-radio target-type="layout-style" selected-value="book"></button-radio>
   // </span>
