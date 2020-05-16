@@ -12,7 +12,8 @@ customElements.define('range-slider',
       super();
       initShadowRoot(this, 'RangeSlider.css', template);
       this.bindFunctions();
-      this.circle = this.shadowRoot.children[2].children[0];
+      this.bar = this.shadowRoot.children[2]
+      this.circle = this.bar.children[0];
       this.addMouseEventListeners();
       this.mouseDown = false;
     }
@@ -39,7 +40,6 @@ customElements.define('range-slider',
       this.sliderMouseMove = this.sliderMouseMove.bind(this);
       this.sliderMouseMoveMove = this.sliderMouseMoveMove.bind(this);
       this.sliderMouseDown = this.sliderMouseDown.bind(this);
-      this.sliderMouseDownMove = this.sliderMouseDownMove.bind(this);
     }
 
     addMouseEventListeners() {
@@ -48,30 +48,22 @@ customElements.define('range-slider',
     }
 
     handleMouseUp() {
-      console.log('up');
       this.mouseDown = false;
     }
 
-    sliderMouseDown(e) {
-      debounceFunction(this.sliderMouseDownMove, e.target, 2000, this)
+    sliderMouseDown() {
       this.mouseDown = true;
-    }
-
-    sliderMouseDownMove() {
-      console.log('down')
-
-      
     }
 
     sliderMouseMove(e) {
       if (this.mouseDown) {
-        debounceFunction(this.sliderMouseMoveMove, e.target, 2000, this);
+        debounceFunction(this.sliderMouseMoveMove, e, 50, this);
       }
     }
 
-    sliderMouseMoveMove(target) {
-      console.log('move')
-      const circlePosition = target.offsetLeft - (target.offsetWidth / 2)
+    sliderMouseMoveMove(e) {
+      const circlePosition = Math.min(Math.max(1, e.clientX - this.bar.offsetLeft), this.bar.offsetWidth - 1);
+      this.circle.style.transform = `translate3d(${circlePosition}px, 0, 0)`
       // console.log(target.offsetLeft, target.offsetWidth)
       // console.log(this.offsetLeft)
     }
