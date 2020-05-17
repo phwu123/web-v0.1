@@ -1,4 +1,4 @@
-import { themeColorDefault, layoutStyleDefault } from './Constants.js'
+import { themeColorDefault, layoutStyleDefault, offsetYStart, offsetYEnd, offsetXStartMin, offsetXStartMax, durationMin, durationMax, offsetXEndDisplacementMin, offsetXEndDisplacementMax } from './Constants.js'
 
 function createBaseCss() {
   const link = document.createElement('link');
@@ -64,4 +64,24 @@ export function delayFunction(fcn, e, timeout, scope) {
   scope._timeout = setTimeout(() => {
     fcn(e);
   }, timeout);
+}
+
+export function fallingAnimation(xAxis, duration, target, targetAnimationStart, targetAnimationEnd) {
+  const translate = xAxis
+    ? `translate3d(${getRandomValueBetween(offsetXEndDisplacementMin, offsetXEndDisplacementMax) / 100 * window.innerWidth}px, 0, 0)`
+    : `translate3d(0, ${(offsetYEnd - offsetYStart) / 100 * window.innerHeight}px, 0)`;
+  const getInnerAnimation = (innerAnimation) => {
+    return innerAnimation
+      ? ` ${innerAnimation}`
+      : ''
+  }
+  const transformFull = [
+    { transform: `translate3d(0, 0, 0)${getInnerAnimation(targetAnimationStart)}`},
+    { transform: `${translate}${getInnerAnimation(targetAnimationEnd)}`}
+  ];
+  const transformTiming = {
+    duration,
+    easing: `cubic-bezier(${getRandomValueBetween(0, 0.7)}, ${getRandomValueBetween(0, 0,7)}, ${getRandomValueBetween(0.3, 1)}, ${getRandomValueBetween(0.3, 1)})`,
+  }
+  return target.animate(transformFull, transformTiming);
 }
