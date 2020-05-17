@@ -49,12 +49,19 @@ export function getRandomValueBetween(min, max) {
   return Math.random() * (max-min) + min;
 }
 
-export function debounceFunction(fcn, e, timer, scope) {
+export function debounceFunction(fcn, e, timeout, scope) {
   if (!scope._debounce) {
     scope._debounce = true;
     setTimeout(() => {
       scope._debounce = false;
-    }, timer);
+    }, timeout);
     fcn(e);
   }
+}
+
+export function delayFunction(fcn, e, timeout, scope) {
+  clearTimeout(scope._timeout);
+  scope._timeout = setTimeout(() => {
+    fcn(e);
+  }, timeout);
 }

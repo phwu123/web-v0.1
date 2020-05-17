@@ -49,6 +49,10 @@ customElements.define('falling-object',
         iterations: Infinity
       }
       this.animationX = this.animate(translateX, translateXTiming);
+      setTimeout(() => {
+        this.setPositionStart();
+        this.setAnimationPositionEndX();
+      }, this.duration);
     }
 
     // setAnimationPositionEndY() {

@@ -4,15 +4,25 @@
   margin: -1em;
 }
 
-:host div {
+:host .outer-bar {
   position: relative;
-  background-color: transparent;
   height: 0.1em;
   border-radius: var(--border-radius);
+  background-color: transparent;
   border: var(--border-style);
 }
 
-:host span {
+:host .filler-color {
+  position: absolute;
+  height: 100%;
+  border-radius: var(--border-radius);
+  background-color: red;
+  width: 100%;
+  transform: scale3d(0, 1, 1);
+  transform-origin: left;
+}
+
+:host .circle-handle {
   position: absolute;
   top: -0.5em;
   left: -0.5em;
@@ -20,4 +30,5 @@
   width: 1em;
   border-radius: 50%;
   background-color: var(--color-font);
+  z-index: 1;
 }

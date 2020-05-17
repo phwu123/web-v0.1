@@ -1,8 +1,10 @@
-import { debounceFunction, initShadowRoot } from '../Functions.js';
+import { debounceFunction, delayFunction, initShadowRoot } from '../Functions.js';
+import { sliderMinBuffer, sliderMaxBuffer } from '../Constants.js';
 
 const template = `
-  <div>
-    <span effect-click></span>
+  <div class="outer-bar">
+    <span class="circle-handle" effect-click></span>
+    <span class="filler-color"></span>
   </div>
 `;
 
@@ -14,12 +16,13 @@ customElements.define('range-slider',
       this.bindFunctions();
       this.bar = this.shadowRoot.children[2]
       this.circle = this.bar.children[0];
+      this.filler = this.bar.children[1];
       this.addMouseEventListeners();
       this.mouseDown = false;
     }
 
     static get observedAttributes() {
-      return ['mouse-up'];
+      return ['slider-for', 'mouse-up', 'set-value'];
     }
 
     get mouseIsUp() {
@@ -32,6 +35,9 @@ customElements.define('range-slider',
           if (this.mouseIsUp && this.mouseDown) {
             this.handleMouseUp();
           }
+          break;
+        case 'set-value':
+          this.sliderMouseMoveMove(null, newVal * this.bar.offsetWidth);
           break;
       }
     }
@@ -57,15 +63,38 @@ customElements.define('range-slider',
 
     sliderMouseMove(e) {
       if (this.mouseDown) {
-        debounceFunction(this.sliderMouseMoveMove, e, 50, this);
+        debounceFunction(this.sliderMouseMoveMove, e.clientX, 50, this);
       }
     }
 
-    sliderMouseMoveMove(e) {
-      const circlePosition = Math.min(Math.max(1, e.clientX - this.bar.offsetLeft), this.bar.offsetWidth - 1);
-      this.circle.style.transform = `translate3d(${circlePosition}px, 0, 0)`
-      // console.log(target.offsetLeft, target.offsetWidth)
-      // console.log(this.offsetLeft)
+    sliderMouseMoveMove(position, force) {
+      const circlePosition = force || Math.min(Math.max(1, position - this.bar.offsetLeft), this.bar.offsetWidth - 1);
+      this.circle.style.transform = `translate3d(${circlePosition}px, 0, 0)`;
+      const percentFilled = circlePosition / this.bar.offsetWidth;
+      this.filler.style.transform = `scale3d(${percentFilled}, 1, 1)`;
+      let filledText;
+      if (percentFilled < sliderMinBuffer) {
+        filledText = 'Off';
+      } else if (percentFilled < 0.34) {
+        filledText = 'Low';
+      } else if (percentFilled < 0.67) {
+        filledText = 'Medium';
+      } else if (percentFilled < sliderMaxBuffer) {
+        filledText = 'High';
+      } else {
+        filledText = 'Max';
+      }
+      this.previousElementSibling.textContent = `${this.getAttribute('slider-for')}'s: ${filledText}`;
+      delayFunction(this.dispatchEvent, this.changeAnimationFrequency(percentFilled), 500, this);
+    }
+
+    changeAnimationFrequency(percent) {
+      return new CustomEvent('animation-frequency', {
+        detail: {
+          type: this.getAttribute('slider-for'),
+          percent
+        }
+      })
     }
   }
 )

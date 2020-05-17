@@ -1,5 +1,7 @@
 export const themeColorDefault = 'dark';
 export const layoutStyleDefault = 'basic';
+export const sliderMinBuffer = 0.03;
+export const sliderMaxBuffer = 0.95;
 export const offsetYStart = -10;
 export const offsetYEnd = 110;
 export const offsetXStartMin = 70;

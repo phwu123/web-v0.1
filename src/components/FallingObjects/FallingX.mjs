@@ -1,6 +1,10 @@
 import { getRandomValueBetween } from '../../Functions.js';
 import { offsetYEnd, offsetYStart } from '../../Constants.js';
 
+template = `
+
+`;
+
 customElements.define('falling-x',
   class FallingX extends customElements.get('falling-object') {
     constructor() {
@@ -10,10 +14,11 @@ customElements.define('falling-x',
       this.animationY = null;
       this.self = null;
       this.colors = ['blue', 'red', 'yellow'];
+      this.setForDeletion = false;
     }
 
     static get observedAttributes () {
-      return ['init-complete', 'duration-change']
+      return ['init-complete', 'duration-change', 'delete-this'];
     }
 
     attributeChangedCallback(name, oldVal, newVal) {
@@ -24,6 +29,9 @@ customElements.define('falling-x',
         case 'duration-change':
           this.setColor();
           this.setAnimationPositionEndY(newVal);
+          break;
+        case 'delete-this':
+          this.setForDeletion = true;
           break;
       }
     }
