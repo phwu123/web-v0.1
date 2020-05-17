@@ -16,7 +16,7 @@ customElements.define('screen-component',
       this.appendChild(document.createElement('falling-x'))
       this.appendChild(document.createElement('falling-x'))
       this.appendChild(document.createElement('falling-x'))
-    //  window.addEventListener('animation-frequency', this.changeAnimationFrequency, false);
+      window.addEventListener('animation-frequency', this.changeAnimationFrequency, false);
     }
 
     bindFunctions() {
@@ -32,6 +32,7 @@ customElements.define('screen-component',
           break;
       }
       const countNew = this.getCountNew(percent, tagName);
+      console.log(countNew)
       const oldObjects = this.getOldObjects(tagName);
       const countOld = oldObjects.length;
       if (countNew > countOld) {

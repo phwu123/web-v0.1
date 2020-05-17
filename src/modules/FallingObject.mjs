@@ -7,7 +7,6 @@ customElements.define('falling-object',
       super();
       this.duration = null;
       this.animationX = null;
-      this.animationY = null;
     }
 
     connectedCallback() {
