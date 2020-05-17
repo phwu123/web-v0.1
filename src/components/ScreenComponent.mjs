@@ -32,11 +32,10 @@ customElements.define('screen-component',
           break;
       }
       const countNew = this.getCountNew(percent, tagName);
-      console.log(countNew)
       const oldObjects = this.getOldObjects(tagName);
       const countOld = oldObjects.length;
       if (countNew > countOld) {
-        this.addNewObjects(type, countNew - countOld)
+        this.addNewObjects(type, countNew - countOld);
       } else if (countNew < countOld) {
         this.tagForRemoval(oldObjects, countOld - countNew);
       };
@@ -59,13 +58,13 @@ customElements.define('screen-component',
     addNewObjects(type, numToAdd) {
       for (let i = 0; i < numToAdd; ++i) {
         this.appendChild(document.createElement(`falling-${type}`));
-      }
+      };
     }
 
     tagForRemoval(fallingObjects, numToRemove) {
       for (let i = 0; i < numToRemove; ++i) {
         fallingObjects[i].setAttribute('delete-this', '');
-      }
+      };
     }
   }
 )

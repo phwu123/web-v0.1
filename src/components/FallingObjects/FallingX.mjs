@@ -6,46 +6,24 @@ customElements.define('falling-x',
       super();
       this.attachShadow({ mode: 'open' })
       this.shadowRoot.appendChild(document.createElement('slot'));
-      this.animationYAndInner = null;
-      this.self = null;
+      this.objectNodes = null;
       this.colors = ['blue', 'red', 'yellow'];
-    }
-
-    static get observedAttributes () {
-      return ['init-complete', 'duration-change', 'delete-this'];
-    }
-
-    attributeChangedCallback(name, oldVal, newVal) {
-      switch (name) {
-        case 'init-complete':
-          this.initSelf();
-          break;
-        case 'duration-change':
-          this.setAnimation(Number(newVal));
-          break;
-      }
+      this.targetAnimationStart = 'rotate3d(0, 0, 1, 0deg)'
+      this.targetAnimationEnd = 'rotate3d(0, 0, 1, -3600deg)'
     }
 
     initSelf() {
-      this.self = document.createElement('p');
-      this.self.textContent = 'X';
-      this.appendChild(this.self);
+      this.objectNodes = document.createElement('p');
+      this.objectNodes.textContent = 'X';
+      this.appendChild(this.objectNodes);
+    }
+
+    otherLoopParams() {
+      this.setColor();
     }
 
     setColor() {
-      this.self.style.color = this.colors[Math.floor(getRandomValueBetween(0, 3))];
-    }
-
-    setAnimation(duration) {
-      this.setColor();
-      this.animationYAndInner = fallingAnimation(false, duration, this.self, 'rotate3d(0, 0, 1, 0deg)', 'rotate3d(0, 0, 1, -3600deg)');
-      setTimeout(() => {
-        if (this.hasAttribute('delete-this')) {
-          this.remove();
-        } else {
-          this.animationYAndInner.cancel();
-        }
-      }, duration);
+      this.objectNodes.style.color = this.colors[Math.floor(getRandomValueBetween(0, 3))];
     }
   }
 )

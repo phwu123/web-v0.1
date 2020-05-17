@@ -5,31 +5,43 @@ customElements.define('falling-object',
   class FallingObject extends HTMLElement {
     constructor() {
       super();
-      this.duration = null;
       this.animationX = null;
+      this.animationYAndInner = null;
+      // required: objectNodes, targetAnimationStart, targetAnimationEnd
+    }
+
+    static get observedAttributes() {
+      return ['delete-this'];
     }
 
     connectedCallback() {
       this.setPositionStart();
       this.style.position = 'absolute';
-      this.setAttribute('init-complete', '');
-      this.setAnimations();
+      this.initSelf();
+      this.setNewLoopParams();
     }
+
+    // required methods: initSelf, otherLoopParams
 
     setPositionStart() {
       this.style.top = offsetYStart / 100 * window.innerHeight + 'px';
       this.style.left = getRandomValueBetween(offsetXStartMin, offsetXStartMax) / 100 * window.innerWidth + 'px';
     }
 
-    setAnimations() {
-      this.duration = getRandomValueBetween(durationMin, durationMax);
-      this.setAttribute('duration-change', this.duration)
-      this.animationX = fallingAnimation(true, this.duration, this);
+    setNewLoopParams() {
+      this.otherLoopParams();
+      const duration = getRandomValueBetween(durationMin, durationMax);
+      this.animationX = fallingAnimation(true, duration, this);
+      this.animationYAndInner = fallingAnimation(false, duration, this.objectNodes, this.targetAnimationStart, this.targetAnimationEnd);
       setTimeout(() => {
-        this.animationX.cancel();
-        this.setPositionStart();
-        this.setAnimations();
-      }, this.duration);
+        if (this.hasAttribute('delete-this')) {
+          this.remove();
+        } else {
+          this.animationX.cancel();
+          this.animationYAndInner.cancel();
+          this.setNewLoopParams();
+        }
+      }, duration);
     }
   }
 )
