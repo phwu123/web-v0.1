@@ -13,11 +13,9 @@ customElements.define('range-slider',
     constructor() {
       super();
       initShadowRoot(this, 'RangeSlider.css', template);
-      this.bindFunctions();
       this.bar = this.shadowRoot.children[2]
       this.circle = this.bar.children[0];
       this.filler = this.bar.children[1];
-      this.addMouseEventListeners();
       this.mouseDown = false;
     }
 
@@ -42,10 +40,15 @@ customElements.define('range-slider',
       }
     }
 
+    connectedCallback() {
+      this.bindFunctions();
+      this.addMouseEventListeners();
+    }
+
     bindFunctions() {
+      this.sliderMouseDown = this.sliderMouseDown.bind(this);
       this.sliderMouseMove = this.sliderMouseMove.bind(this);
       this.sliderMouseMoveMove = this.sliderMouseMoveMove.bind(this);
-      this.sliderMouseDown = this.sliderMouseDown.bind(this);
     }
 
     addMouseEventListeners() {
@@ -63,7 +66,7 @@ customElements.define('range-slider',
 
     sliderMouseMove(e) {
       if (this.mouseDown) {
-        debounceFunction(this.sliderMouseMoveMove, e.clientX, 50, this);
+        debounceFunction(this.sliderMouseMoveMove, e.clientX - e.currentTarget.offsetParent.offsetLeft, 50, this);
       }
     }
 
