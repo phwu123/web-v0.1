@@ -1,4 +1,4 @@
-import { getRandomValueBetween, fallingAnimation } from '../../Functions.js';
+import { getRandomValueBetween } from '../../Functions.js';
 
 customElements.define('falling-x',
   class FallingX extends customElements.get('falling-object') {

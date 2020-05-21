@@ -66,10 +66,13 @@ export function delayFunction(fcn, e, timeout, scope) {
   }, timeout);
 }
 
-export function fallingAnimation(xAxis, duration, target, targetAnimationStart, targetAnimationEnd) {
+export function fallingAnimation(xAxis, duration, target, targetAnimationStart, targetAnimationEnd, zAxisFix) {
+  const zAxisAdjust = zAxisFix
+    ? `${zAxisFix}px`
+    : 0
   const translate = xAxis
     ? `translate3d(${getRandomValueBetween(offsetXEndDisplacementMin, offsetXEndDisplacementMax) / 100 * window.innerWidth}px, 0, 0)`
-    : `translate3d(0, ${(offsetYEnd - offsetYStart) / 100 * window.innerHeight}px, 0)`;
+    : `translate3d(0, ${(offsetYEnd - offsetYStart) / 100 * window.innerHeight}px, ${zAxisAdjust})`;
   const getInnerAnimation = (innerAnimation) => {
     return innerAnimation
       ? ` ${innerAnimation}`

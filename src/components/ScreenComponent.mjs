@@ -13,10 +13,11 @@ customElements.define('screen-component',
 
     connectedCallback() {
       this.shadowRoot.appendChild(document.createElement('slot'));
-      this.appendChild(document.createElement('falling-x'))
-      this.appendChild(document.createElement('falling-x'))
-      this.appendChild(document.createElement('falling-x'))
       window.addEventListener('animation-frequency', this.changeAnimationFrequency, false);
+      this.appendChild(document.createElement('falling-prism'))
+      this.appendChild(document.createElement('falling-prism'))
+      this.appendChild(document.createElement('falling-prism'))
+      this.appendChild(document.createElement('falling-prism'))
     }
 
     bindFunctions() {

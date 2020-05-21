@@ -8,6 +8,7 @@ customElements.define('falling-object',
       this.animationX = null;
       this.animationYAndInner = null;
       // required: objectNodes, targetAnimationStart, targetAnimationEnd
+      // optional: zAxisFix
     }
 
     static get observedAttributes() {
@@ -19,6 +20,7 @@ customElements.define('falling-object',
       this.style.position = 'absolute';
       this.initSelf();
       this.setNewLoopParams();
+      // required: objectNodes
     }
 
     // required methods: initSelf, otherLoopParams
@@ -32,7 +34,7 @@ customElements.define('falling-object',
       this.otherLoopParams();
       const duration = getRandomValueBetween(durationMin, durationMax);
       this.animationX = fallingAnimation(true, duration, this);
-      this.animationYAndInner = fallingAnimation(false, duration, this.objectNodes, this.targetAnimationStart, this.targetAnimationEnd);
+      this.animationYAndInner = fallingAnimation(false, duration, this.objectNodes, this.targetAnimationStart, this.targetAnimationEnd, this.zAxisFix);
       setTimeout(() => {
         if (this.hasAttribute('delete-this')) {
           this.remove();
