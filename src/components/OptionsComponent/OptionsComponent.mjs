@@ -7,21 +7,7 @@ const template = `
     <options-layouts id="options-layouts"></options-layouts>
     <options-animations id="options-animations"></options-animations>
   </dropdown-box-module>
-`
-
-{/* <span class="options-row" effect-hover effect-click>
-<p>Layout Type</p>
-<p>^</p>
-</span>
-<span class="options-row" effect-hover effect-click>
-<p>Effects</p>
-<p>^</p>
-</span>
-<span class="options-row" effect-hover effect-click>
-<p>Background</p>
-<p>^</p>
-
-</span> */}
+`;
 
 customElements.define('options-component',
   class OptionsComponent extends HTMLElement {

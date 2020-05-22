@@ -3,7 +3,11 @@ const template = `
     <label>X's: Low</label>
     <range-slider id="x-range" slider-for="x"></range-slider>
   </span>
-`
+  <span class="option-row slider-row">
+    <label>Prisms: Off</label>
+    <range-slider slider-for="prism"></range-slider>
+  </span>
+`;
 
 customElements.define('options-animations',
   class OptionsAnimations extends customElements.get('options-module') {

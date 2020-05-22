@@ -34,7 +34,7 @@ customElements.define('options-button',
     }
 
     windowResizeEvent() {
-      return new CustomEvent('window-resize', { bubbles: true })
+      return new CustomEvent('window-resize', { bubbles: true });
     }
 
     setDesktopMode() {

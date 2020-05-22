@@ -7,7 +7,7 @@ const template = `
   </span>
   <span class="option-row button-row" effect-hover effect-click>
     <label>Dark</label>
-    <button-radio target-type="theme-color" selected-value="dark"></button-radio>
+    <button-radio target-type="theme-color" selected-value="dark" is-selected></button-radio>
   </span>
 `
 
@@ -22,12 +22,12 @@ customElements.define('options-themes',
 
     setThemeColor() {
       const theme = this.children[1].getAttribute('selected-value');
-      const OptionsThemes = document.getElementById('options-themes')
+      const OptionsThemes = document.getElementById('options-themes');
       if (theme !== OptionsThemes.getAttribute('theme-color')) {
         OptionsThemes.setAttribute('theme-color', theme);
-        [...this.parentNode.children].forEach(child => child.children[1].setAttribute('theme-color', theme))
+        [...this.parentNode.children].forEach(child => child.children[1].setAttribute('theme-color', theme));
         setThemeColor(theme);
-        document.getElementById('component-contact').setAttribute('theme-color', theme)
+        document.getElementById('component-contact').setAttribute('theme-color', theme);
         OptionsThemes.textContent = theme;
       }
     }

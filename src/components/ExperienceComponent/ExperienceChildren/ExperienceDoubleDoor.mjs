@@ -9,8 +9,7 @@ const template = `
   <li>Worked with other software engineers to create and enforce coding standards</li>
   <li>Windows environment compatibility for scripts and modules including AWS</li>
   <li>IE / Edge browser compatibility</li>
-  
-`
+`;
 
 customElements.define('experience-doubledoor',
   class ExperienceDoubleDoor extends customElements.get('experience-module') {

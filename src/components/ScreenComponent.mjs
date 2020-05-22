@@ -9,15 +9,13 @@ customElements.define('screen-component',
       this.bindFunctions();
       this.counterX = 0;
       this.maxX = 10;
+      this.counterPRISM = 0;
+      this.maxPRISM = 10;
     }
 
     connectedCallback() {
       this.shadowRoot.appendChild(document.createElement('slot'));
       window.addEventListener('animation-frequency', this.changeAnimationFrequency, false);
-      this.appendChild(document.createElement('falling-prism'))
-      this.appendChild(document.createElement('falling-prism'))
-      this.appendChild(document.createElement('falling-prism'))
-      this.appendChild(document.createElement('falling-prism'))
     }
 
     bindFunctions() {
@@ -31,6 +29,11 @@ customElements.define('screen-component',
         case 'x':
           tagName = 'X';
           break;
+        case 'prism':
+          tagName = 'PRISM';
+          break;
+        default:
+          return;
       }
       const countNew = this.getCountNew(percent, tagName);
       const oldObjects = this.getOldObjects(tagName);

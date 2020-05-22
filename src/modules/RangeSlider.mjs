@@ -87,7 +87,10 @@ customElements.define('range-slider',
       } else {
         filledText = 'Max';
       }
-      this.previousElementSibling.textContent = `${this.getAttribute('slider-for')}'s: ${filledText}`;
+      const typeLabel = this.getAttribute('slider-for') === 'x'
+        ? 'x\'s'
+        : `${this.getAttribute('slider-for')}s`
+      this.previousElementSibling.textContent = `${typeLabel}: ${filledText}`;
       delayFunction(this.dispatchEvent, this.changeAnimationFrequency(percentFilled), 500, this);
     }
 

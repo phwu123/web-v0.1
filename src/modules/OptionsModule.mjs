@@ -1,4 +1,4 @@
-import { initAttributes, initShadowRoot } from '../Functions.js'
+import { initAttributes, initShadowRoot } from '../Functions.js';
 
 const template = `
   <span class="options-row" effect-hover effect-click>
@@ -6,7 +6,7 @@ const template = `
     <p>^</p>
   </span>
   <dropdown-box-module></dropdown-box-module>
-`
+`;
 
 customElements.define('options-module',
   class OptionsModule extends HTMLElement {
@@ -14,9 +14,9 @@ customElements.define('options-module',
       super();
       initAttributes(this);
       initShadowRoot(this, 'OptionsModule.css', template);
-      this.dropdownBox = this.shadowRoot.children[3]
+      this.dropdownBox = this.shadowRoot.children[3];
       this.toggleOptionDropdown = this.toggleOptionDropdown.bind(this);
-      this.shadowRoot.children[2].addEventListener('click', this.toggleOptionDropdown)
+      this.shadowRoot.children[2].addEventListener('click', this.toggleOptionDropdown);
     }
 
     static get observedAttributes() {
@@ -32,7 +32,7 @@ customElements.define('options-module',
     }
 
     get optionsShow() {
-      return this.getAttribute('options-show') !== null
+      return this.getAttribute('options-show') !== null;
     }
 
     toggleOptionDropdown() {

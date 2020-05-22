@@ -7,7 +7,7 @@ const template = `
     <label>Gallery</label>
     <button-radio target-type="layout-style" selected-value="gallery"></button-radio>
   </span>
-  `
+  `;
   // <span class="option-row button-row" effect-hover effect-click>
   //   <label>Book</label>
   //   <button-radio target-type="layout-style" selected-value="book"></button-radio>
@@ -24,13 +24,13 @@ customElements.define('options-layouts',
     }
 
     setLayoutStyleText(e) {
-      const target = e.currentTarget
+      const target = e.currentTarget;
       const layout = target.children[1].getAttribute('selected-value');
       const OptionsLayouts = document.getElementById('options-layouts');
       if (layout !== OptionsLayouts.getAttribute('layout-style')) {
         this.dispatchEvent(this.changeLayoutEvent(layout));
         OptionsLayouts.setAttribute('layout-style', layout);
-        [...target.parentNode.children].forEach(child => child.children[1].setAttribute('layout-style', layout))
+        [...target.parentNode.children].forEach(child => child.children[1].setAttribute('layout-style', layout));
         OptionsLayouts.textContent = layout;
       }
     }

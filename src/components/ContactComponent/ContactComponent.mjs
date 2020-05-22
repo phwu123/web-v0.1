@@ -1,6 +1,6 @@
 import { initTheme } from '../../Functions.js';
 
-const ContactComponentBasicTemplate = `
+const template = `
   <header class="component-header">Contact</header>
   <section class="component-section contact-links">
     <a href="https://github.com/phwu123" target="_blank" rel="noreferrer noopener">
@@ -13,19 +13,19 @@ const ContactComponentBasicTemplate = `
       <img id="email-image">
     </a>
   </section>
-`
+`;
 
 customElements.define('contact-component',
   class ContactComponent extends HTMLElement {
     constructor() {
       super();
-      this.innerHTML = ContactComponentBasicTemplate
+      this.innerHTML = template;
     }
 
     connectedCallback() {
       initTheme(this);
-      this.linkedinImage = this.getLinkedinImage
-      this.emailImage = this.getEmailImage
+      this.linkedinImage = this.getLinkedinImage;
+      this.emailImage = this.getEmailImage;
     }
 
     static get observedAttributes() {
@@ -41,20 +41,20 @@ customElements.define('contact-component',
     }
 
     get githubImage() {
-      return document.getElementById('github-image').src
+      return document.getElementById('github-image').src;
     }
 
     set githubImage(val) {
-      document.getElementById('github-image').src = val
+      document.getElementById('github-image').src = val;
     }
 
     getGithubImage() {
       switch (this.getAttribute('theme-color')) {
         case 'dark':
-          return 'src/images/GitHub-Mark-Light-64px.png'
+          return 'src/images/GitHub-Mark-Light-64px.png';
         case 'light':
         default:
-          return 'src/images/GitHub-Mark-64px.png'
+          return 'src/images/GitHub-Mark-64px.png';
       }
     }
 
@@ -63,11 +63,11 @@ customElements.define('contact-component',
     }
 
     set linkedinImage(val) {
-      document.getElementById('linkedin-image').src = val
+      document.getElementById('linkedin-image').src = val;
     }
 
     get getLinkedinImage() {
-      return 'src/images/LI-In-Bug.png'
+      return 'src/images/LI-In-Bug.png';
     }
 
     get emailImage() {
@@ -75,11 +75,11 @@ customElements.define('contact-component',
     }
 
     set emailImage(val) {
-      document.getElementById('email-image').src = val
+      document.getElementById('email-image').src = val;
     }
 
     get getEmailImage() {
-      return 'src/images/email-icon.png'
+      return 'src/images/email-icon.png';
     }
   }
 )

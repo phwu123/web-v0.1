@@ -4,12 +4,12 @@ customElements.define('falling-x',
   class FallingX extends customElements.get('falling-object') {
     constructor() {
       super();
-      this.attachShadow({ mode: 'open' })
+      this.attachShadow({ mode: 'open' });
       this.shadowRoot.appendChild(document.createElement('slot'));
       this.objectNodes = null;
       this.colors = ['blue', 'red', 'yellow'];
-      this.targetAnimationStart = 'rotate3d(0, 0, 1, 0deg)'
-      this.targetAnimationEnd = 'rotate3d(0, 0, 1, -3600deg)'
+      this.targetAnimationStart = 'rotate3d(0, 0, 1, 0deg)';
+      this.targetAnimationEnd = 'rotate3d(0, 0, 1, -3600deg)';
     }
 
     initSelf() {
