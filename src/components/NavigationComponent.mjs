@@ -38,8 +38,8 @@ customElements.define('navigation-component',
     }
 
     connectedCallback() {
-      const content = [...this.children];
-      for (let i = 0; i < content.length - 1; ++i) {
+      const content = [...this.children].slice(0, 3);
+      for (let i = 0; i < content.length; ++i) {
         content[i].addEventListener('click', this.navigateToPage, false);
       }
       this.addEventListener('window-resize', this.handleWindowResize, false);
@@ -74,7 +74,7 @@ customElements.define('navigation-component',
 
     navigateScroll(name) {
       const target = document.getElementById(`component-${name}`);
-      this.contentHolder.scroll({top: target.offsetTop - this.contentHolder.offsetTop, left: target.offsetLeft - this.contentHolder.offsetLeft, behavior: 'smooth'});
+      this.contentHolder.scroll({top: target.offsetTop - this.contentHolder.offsetHeight * 0.05, left: target.offsetLeft, behavior: 'smooth'});
     }
 
     navigateFlip(name) {
