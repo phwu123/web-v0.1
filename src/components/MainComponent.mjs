@@ -3,7 +3,7 @@ import { initLayout, setThemeColor, debounceFunction } from '../Functions.js';
 const template = `
   <screen-component class="screen-component"></screen-component>
   <section class="menu-component">
-    <navigation-component></navigation-component>
+    <navigation-component id="navigation-component"></navigation-component>
     <options-component></options-component>
   </section>
   <main id="content-holder" class="content-holder">
@@ -42,6 +42,7 @@ customElements.define('main-component',
     changeLayout(e) {
       this.contentHolder.scroll({top: 0, left: 0});
       this.setAttribute('layout-style', e.detail);
+      document.getElementById('navigation-component').setAttribute('layout-style', e.detail);
     }
   }
 )

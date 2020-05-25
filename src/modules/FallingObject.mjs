@@ -1,5 +1,5 @@
-import { getRandomValueBetween, fallingAnimation } from '../Functions.js';
-import { offsetYStart, offsetXStartMin, offsetXStartMax, durationMin, durationMax} from '../Constants.js';
+import { getRandomValueBetween } from '../Functions.js';
+import { offsetYStart, offsetYEnd, offsetXStartMin, offsetXStartMax, offsetXEndDisplacementMin, offsetXEndDisplacementMax, durationMin, durationMax} from '../Constants.js';
 
 customElements.define('falling-object',
   class FallingObject extends HTMLElement {
@@ -33,8 +33,8 @@ customElements.define('falling-object',
     setNewLoopParams() {
       this.otherLoopParams();
       const duration = getRandomValueBetween(durationMin, durationMax);
-      this.animationX = fallingAnimation(true, duration, this);
-      this.animationYAndInner = fallingAnimation(false, duration, this.objectNodes, this.targetAnimationStart, this.targetAnimationEnd, this.zAxisFix);
+      this.animationX = this.fallingAnimation(true, duration, this);
+      this.animationYAndInner = this.fallingAnimation(false, duration, this.objectNodes, this.targetAnimationStart, this.targetAnimationEnd, this.zAxisFix);
       setTimeout(() => {
         if (this.hasAttribute('delete-this')) {
           this.remove();
@@ -44,6 +44,29 @@ customElements.define('falling-object',
           this.setNewLoopParams();
         }
       }, duration);
+    }
+
+    fallingAnimation(xAxis, duration, target, targetAnimationStart, targetAnimationEnd, zAxisFix) {
+      const zAxisAdjust = this.zAxisFix
+        ? `${zAxisFix}px`
+        : 0
+      const translate = xAxis
+        ? `translate3d(${getRandomValueBetween(offsetXEndDisplacementMin, offsetXEndDisplacementMax) / 100 * window.innerWidth}px, 0, 0)`
+        : `translate3d(0, ${(offsetYEnd - offsetYStart) / 100 * window.innerHeight}px, ${zAxisAdjust})`;
+      const getInnerAnimation = (innerAnimation) => {
+        return innerAnimation
+          ? ` ${innerAnimation}`
+          : ''
+      }
+      const transformFull = [
+        { transform: `translate3d(0, 0, 0)${getInnerAnimation(targetAnimationStart)}`},
+        { transform: `${translate}${getInnerAnimation(targetAnimationEnd)}`}
+      ];
+      const transformTiming = {
+        duration,
+        easing: `cubic-bezier(${getRandomValueBetween(0, 0.7)}, ${getRandomValueBetween(0, 0,7)}, ${getRandomValueBetween(0.3, 1)}, ${getRandomValueBetween(0.3, 1)})`,
+      }
+      return target.animate(transformFull, transformTiming);
     }
   }
 )

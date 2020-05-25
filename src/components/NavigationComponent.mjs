@@ -16,13 +16,17 @@ customElements.define('navigation-component',
       initLayout(this);
       this.bindFunctions();
       this.contentHolder = document.getElementById('content-holder');
-      this.skillsScroll = null;
-      this.experienceScroll = null;
-      this.contactScroll = null;
+      this.componentSkills = null;
+      this.componentExperience = null;
+      this.componentContact = null;
       this.previousScrollPosition = 0;
       this.markerBrightness = null;
       this.marker = this.lastElementChild;
       this.markerPosition = null;
+      this.scrollPosition = null;
+      this.scrollValue = null;
+      this.offsetPosition = null;
+      this.offsetValue = null;
     }
 
     static get observedAttributes() {
@@ -32,12 +36,14 @@ customElements.define('navigation-component',
     attributeChangedCallback(name) {
       switch (name) {
         case 'layout-style':
+          this.setScrollSuffixes();
           this.previousScrollPosition = 0;
           break;
       }
     }
 
     connectedCallback() {
+      this.setScrollSuffixes();
       const content = [...this.children].slice(0, 3);
       for (let i = 0; i < content.length; ++i) {
         content[i].addEventListener('click', this.navigateToPage, false);
@@ -45,12 +51,12 @@ customElements.define('navigation-component',
       this.addEventListener('window-resize', this.handleWindowResize, false);
       window.addEventListener('mouseup', this.optionsAnimationsMouseUp, false);
       this.contentHolder.addEventListener('scroll', this.contentScroll, false);
+      this.setMarkerBrightness();
       setTimeout(() => {
-        this.skillsScroll = this.getScrollCoords(this.contentHolder.children[0]);
-        this.experienceScroll = this.getScrollCoords(this.contentHolder.children[1]);
-        this.contactScroll = this.getScrollCoords(this.contentHolder.children[2]);
-        this.setMarkerBrightness();
-        this.contentScrollBasic(this.contentHolder.scrollTop);
+        this.componentSkills = document.getElementById('component-skills')
+        this.componentExperience = document.getElementById('component-experience')
+        this.componentContact = document.getElementById('component-contact')
+        this.contentScrollBasic(this.contentHolder[this.scrollPosition]);
       }, 500); // temp
     }
 
@@ -98,7 +104,7 @@ customElements.define('navigation-component',
     }
 
     contentScroll(e) {
-      if (this.skillsScroll) {
+      if (this.componentSkills) {
         debounceFunction(this.scrollTo, e, 100, this);
       }
     }
@@ -109,37 +115,53 @@ customElements.define('navigation-component',
           this.contentScrollBasic(e.target.scrollTop);
           break;
         case 'gallery':
+          if (e.target.scrollLeft !== this.previousScrollPosition) {
+            this.contentScrollBasic(e.target.scrollLeft);
+          }
           break;
       }
     }
 
-    getScrollCoords(target) {
-      return {
-        top: target.offsetTop - this.contentHolder.offsetTop,
-        left: target.offsetLeft - this.contentHolder.offsetLeft,
-        height: target.offsetHeight,
-        width: target.offsetWidth
+    setScrollSuffixes() {
+      switch (this.getAttribute('layout-style')) {
+        case 'basic':
+          this.scrollPosition = 'scrollTop';
+          this.scrollValue = 'scrollHeight';
+          this.offsetPosition = 'offsetTop';
+          this.offsetValue = 'offsetHeight';
+          break;
+        case 'gallery':
+          this.scrollPosition = 'scrollLeft'
+          this.scrollValue = 'scrollWidth';
+          this.offsetPosition = 'offsetLeft';
+          this.offsetValue = 'offsetWidth';
+          break;
+        default:
+          throw('layout-style not set');
       }
     }
 
     contentScrollBasic(scrollPosition) {
-      const contactScrollTop = this.contentHolder.scrollHeight - this.contentHolder.offsetHeight - this.contactScroll.height + 40; // leeway temp
+      const contactScrollBoundaryPrevious = this.contentHolder[this.scrollValue] - this.contentHolder[this.offsetValue] - this.componentContact.offsetHeight + 40;
+      const skillExperienceBoundaryPrevious = this.getPositionStart(this.componentExperience) - 0.4 * this.componentSkills[this.offsetValue];
 
-      const skillExperienceBoundary = this.experienceScroll.top - 0.4 * this.skillsScroll.height
+      const contactAndScrollingForwards = scrollPosition >= contactScrollBoundaryPrevious && this.previousScrollPosition < scrollPosition;
+      const experienceAndScrollingForwards = scrollPosition >= skillExperienceBoundaryPrevious && this.previousScrollPosition < scrollPosition;
+      const experienceAndScrollingBackwards = scrollPosition > skillExperienceBoundaryPrevious && (scrollPosition <= contactScrollBoundaryPrevious && this.previousScrollPosition > scrollPosition);
+      const skillAndScrollingBackwards = scrollPosition < skillExperienceBoundaryPrevious && this.previousScrollPosition > scrollPosition;
 
-      const contactAndScrollingDown = scrollPosition >= contactScrollTop && this.previousScrollPosition < scrollPosition
-      const experienceAndScrollingDown = scrollPosition >= skillExperienceBoundary && this.previousScrollPosition < scrollPosition
-      const experienceAndScrollingUp = scrollPosition > skillExperienceBoundary && (scrollPosition <= contactScrollTop && this.previousScrollPosition > scrollPosition)
-      const skillAndScrollingUp = scrollPosition < skillExperienceBoundary && this.previousScrollPosition > scrollPosition
-
-      if (contactAndScrollingDown) {
+      if (contactAndScrollingForwards) {
         this.moveNavigationMarker('contact');
-      } else if (experienceAndScrollingDown || experienceAndScrollingUp) {
+      } else if (experienceAndScrollingForwards || experienceAndScrollingBackwards) {
         this.moveNavigationMarker('experience');
-      } else if (scrollPosition < this.experienceScroll.top || skillAndScrollingUp) {
+      } else if (scrollPosition < this.getPositionStart(this.componentExperience) || skillAndScrollingBackwards) {
         this.moveNavigationMarker('skills');
       }
       this.previousScrollPosition = scrollPosition;
+    }
+
+    getPositionStart(element) {
+      return element[this.offsetPosition] - this.contentHolder[this.offsetPosition];
     }
 
     moveNavigationMarker(name) {
