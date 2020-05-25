@@ -1,2 +1,6 @@
 1) refactor transition height to something else (transform) somehow?
-2) debouncer to implement force parameter (was causing problems)
+2) add force for animation style: bounce off boundaries
+
+
+3) clean
+4) fix gallery scroll
