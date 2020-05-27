@@ -19,6 +19,12 @@
     border: var(--border-style);
     background-color: var(--color-main-bg);
     border-radius: var(--border-radius);
-    padding: 0.25em 0.75em;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+  }
+
+  :host ::slotted(dropdown-box-module[dropdown-open]) {
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
   }
 }

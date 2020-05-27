@@ -23,7 +23,7 @@ customElements.define('experience-module',
   class ExperienceModule extends HTMLElement {
     constructor() {
       super();
-      initShadowRoot(this, 'ExperienceModule.css', template);
+      initShadowRoot(this, 'ExperienceModule.css', template, true);
     }
   }
 )

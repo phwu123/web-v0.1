@@ -5,7 +5,7 @@ customElements.define('screen-component',
   class ScreenComponent extends HTMLElement {
     constructor() {
       super();
-      initShadowRoot(this, 'ScreenComponent.css');
+      initShadowRoot(this, 'ScreenComponent.css', null, true);
       this.bindFunctions();
       this.counterX = 0;
       this.maxX = 10;

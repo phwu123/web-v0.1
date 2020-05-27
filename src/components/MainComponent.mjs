@@ -19,6 +19,7 @@ customElements.define('main-component',
       super();
       this.bindFunctions();
       initLayout(this);
+      this.initFunctions();
       setThemeColor();
       this.innerHTML = template;
       this.contentHolder = document.getElementById('content-holder');
@@ -35,12 +36,21 @@ customElements.define('main-component',
       this.addEventListener('change-layout', this.changeLayout, false);
     }
 
+    initFunctions() {
+      this.warnCss();
+    }
+
+    warnCss() {
+      if (document.styleSheets.length !== 2) {
+        alert('Please turn off any CSS extensions or plugins and refresh');
+      }
+    }
+
     bindFunctions() {
       this.changeLayout = this.changeLayout.bind(this);
     }
 
     changeLayout(e) {
-      this.contentHolder.scroll({top: 0, left: 0});
       this.setAttribute('layout-style', e.detail);
       document.getElementById('navigation-component').setAttribute('layout-style', e.detail);
     }

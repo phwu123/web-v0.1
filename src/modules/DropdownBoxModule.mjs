@@ -4,7 +4,7 @@ customElements.define('dropdown-box-module',
   class DropdownBoxModule extends HTMLElement {
     constructor() {
       super();
-      initShadowRoot(this, 'DropdownBoxModule.css');
+      initShadowRoot(this, 'DropdownBoxModule.css', null, true);
       this.animationDuration = 500;
       this.isAnimating = false;
       this.timeoutId = undefined;

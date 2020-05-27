@@ -25,7 +25,7 @@ customElements.define('falling-prism',
   class FallingPrism extends customElements.get('falling-object') {
     constructor() {
       super();
-      initShadowRoot(this, 'FallingPrism.css');
+      initShadowRoot(this, 'FallingPrism.css', null, true);
       this.targetAnimationStart = 'rotate3d(0, 0, 1, 0deg)';
       this.targetAnimationEnd = null;
       this.objectNodes = null;
@@ -38,7 +38,7 @@ customElements.define('falling-prism',
 
     initSelf() {
       this.shadowRoot.innerHTML += template;
-      this.objectNodes = this.shadowRoot.children[2];
+      this.objectNodes = this.shadowRoot.children[1];
     }
 
     otherLoopParams() {

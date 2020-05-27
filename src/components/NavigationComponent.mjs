@@ -10,7 +10,7 @@ customElements.define('navigation-component',
   class NavigationComponent extends HTMLElement {
     constructor() {
       super();
-      initShadowRoot(this, 'NavigationComponent.css');
+      initShadowRoot(this, 'NavigationComponent.css', null, true);
       this.shadowRoot.appendChild(document.createElement('slot'));
       this.innerHTML = template;
       initLayout(this);
@@ -37,7 +37,8 @@ customElements.define('navigation-component',
       switch (name) {
         case 'layout-style':
           this.setScrollSuffixes();
-          this.previousScrollPosition = 0;
+          this.contentHolder.scroll({top: 0, left: 0})
+          this.contentScrollBasic(0);
           break;
       }
     }
@@ -50,6 +51,7 @@ customElements.define('navigation-component',
       }
       this.addEventListener('window-resize', this.handleWindowResize, false);
       window.addEventListener('mouseup', this.optionsAnimationsMouseUp, false);
+      window.addEventListener('touchend', this.optionsAnimationsMouseUp, false);
       this.contentHolder.addEventListener('scroll', this.contentScroll, false);
       this.setMarkerBrightness();
       setTimeout(() => {
@@ -100,7 +102,7 @@ customElements.define('navigation-component',
     }
 
     handleWindowResize() {
-      this.contentScrollBasic(this.contentHolder.scrollTop);
+      this.contentScrollBasic(this.contentHolder[this.scrollPosition]);
     }
 
     contentScroll(e) {
@@ -142,7 +144,7 @@ customElements.define('navigation-component',
     }
 
     contentScrollBasic(scrollPosition) {
-      const contactScrollBoundaryPrevious = this.contentHolder[this.scrollValue] - this.contentHolder[this.offsetValue] - this.componentContact.offsetHeight + 40;
+      const contactScrollBoundaryPrevious = this.contentHolder[this.scrollValue] - this.contentHolder[this.offsetValue] - this.componentContact[this.offsetValue] + 40;
       const skillExperienceBoundaryPrevious = this.getPositionStart(this.componentExperience) - 0.4 * this.componentSkills[this.offsetValue];
 
       const contactAndScrollingForwards = scrollPosition >= contactScrollBoundaryPrevious && this.previousScrollPosition < scrollPosition;

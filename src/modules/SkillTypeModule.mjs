@@ -4,7 +4,7 @@ customElements.define('skill-type-module',
   class SkillTypeModule extends HTMLElement {
     constructor() {
       super();
-      initShadowRoot(this, 'SkillTypeModule.css');
+      initShadowRoot(this, 'SkillTypeModule.css', null, true);
     }
   }
 )

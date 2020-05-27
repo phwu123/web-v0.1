@@ -4,7 +4,7 @@ customElements.define('button-radio',
   class ButtonRadio extends HTMLElement {
     constructor() {
       super();
-      initShadowRoot(this, 'ButtonRadio.css');
+      initShadowRoot(this, 'ButtonRadio.css', null, true);
       this.shadowRoot.appendChild(document.createElement('span'))
       this.initAttributes();
     }

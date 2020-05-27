@@ -29,9 +29,11 @@ export function initLayout(node) {
   node.setAttribute('layout-style', layoutStyleDefault);
 }
 
-export function initShadowRoot(node, cssName, template) {
+export function initShadowRoot(node, cssName, template, noBase) {
   node.attachShadow({mode: 'open'});
-  node.shadowRoot.appendChild(createBaseCss());
+  if (!noBase) {
+    node.shadowRoot.appendChild(createBaseCss());
+  }
   if (cssName) {
     node.shadowRoot.appendChild(createCssLink(cssName));
   }

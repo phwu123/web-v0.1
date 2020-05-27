@@ -53,7 +53,9 @@ customElements.define('range-slider',
 
     addMouseEventListeners() {
       this.addEventListener('mousemove', this.sliderMouseMove, false);
+      this.addEventListener('touchmove', this.sliderMouseMove, false);
       this.circle.addEventListener('mousedown', this.sliderMouseDown, false);
+      this.circle.addEventListener('touchstart', this.sliderMouseDown, false);
     }
 
     handleMouseUp() {
@@ -66,7 +68,10 @@ customElements.define('range-slider',
 
     sliderMouseMove(e) {
       if (this.mouseDown) {
-        debounceFunction(this.sliderMouseMoveMove, e.clientX - e.currentTarget.offsetParent.offsetLeft, 50, this);
+        const location = e.touches
+          ? e.touches[0].clientX
+          : e.clientX;
+        debounceFunction(this.sliderMouseMoveMove, location - e.currentTarget.offsetParent.offsetLeft, 50, this);
       }
     }
 

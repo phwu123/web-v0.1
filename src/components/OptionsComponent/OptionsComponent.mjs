@@ -13,9 +13,9 @@ customElements.define('options-component',
   class OptionsComponent extends HTMLElement {
     constructor() {
       super();
-      initShadowRoot(this, 'OptionsComponent.css');
+      initShadowRoot(this, 'OptionsComponent.css', null, true);
       this.shadowRoot.appendChild(document.createElement('slot'));
       this.innerHTML = template;
-    }
+    } 
   }
 )

@@ -16,10 +16,12 @@ time, mark, audio, video {
 	vertical-align: baseline;
 }
 
-[effect-hover]:hover {
-  transition: background-color var(--animation-duration);
-  background-color: var(--color-highlight-hover);
-  border-radius: 0.5em;
+@media (min-width: 601px) {
+  [effect-hover]:hover {
+    transition: background-color var(--animation-duration);
+    background-color: var(--color-highlight-hover);
+    border-radius: 0.5em;
+  }
 }
 
 [effect-click] {
